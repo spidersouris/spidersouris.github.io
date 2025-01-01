@@ -1,0 +1,23 @@
+- course: "Web, corpora and translation"
+  institution: "Institut européen des métiers de la traduction (IEMT)\nUniversity of Strasbourg"
+  level: "Master's\n(1st year)"
+  period: "2024 - 2025"
+  fullResp: true
+
+- course: "Introduction to HTML/CSS"
+  institution: "University of Strasbourg"
+  level: "Bachelor's\n(2nd-3rd years)"
+  period: "2024 - 2025"
+  fullResp: true
+
+- course: "Corpus linguistics"
+  institution: "University of Strasbourg"
+  level: "Master's\n(1st year)"
+  period: "2024 - 2025"
+  fullResp: false
+
+- course: "Corpus analysis"
+  institution: "University of Strasbourg"
+  level: "Master's\n(2nd year)"
+  period: "2024 - 2025"
+  fullResp: false

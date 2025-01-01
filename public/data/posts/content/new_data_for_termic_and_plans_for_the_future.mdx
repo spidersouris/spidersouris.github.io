@@ -1,0 +1,68 @@
+---
+title: "New data for termic and plans for the future"
+date: 2023-07-17T15:10:18+02:00
+draft: false
+tags: ["termic", "programming"]
+---
+
+This blog post accompanies [termic's latest major update (1.5)](https://termic.me/changelog/).
+
+## The mystery of the missing data has been (partially) solved
+
+In the [previous blog post](/writings/important_announcement_about_termic), I explained why termic featured less data compared to Microsoft Terminology Search.
+
+Following the publication of that blog post, someone named **MK** sent me an email to let me know that they had located older Microsoft translation memory files from 2017 containing significantly more data than the files currently available for download on Visual Studio Dev Essentials. And indeed, these older files contain strings from major Microsoft products, such as Windows or Visual Studio.
+
+This raises the question: why are these strings absent from the more recent files? Who knows. Either the system Microsoft uses to generate the translation ZIP files has a bug that causes some string files to be omitted, or these strings have been intentionally removed for an unknown reason.
+
+In any case, I've been able to download these 2017 files, and they're now publicly available [on Dropbox](https://www.dropbox.com/sh/5oh21rhlmrp7rip/AAB_F2Q9wboJlopMZVTMKD5Ya?dl=0), along with the most recent TM and glossary files.
+
+## TM data period option
+
+Thanks to these additional files, **termic 1.5** now features a new data period option for translation memory searches. This allows you to search data from either **2017** or **2020+** (that is the classic dataset that was previously used for searching the translation memory).
+
+Currently, the 2017 data period option is only available for VSCode-supported languages (Czech, English, French, German, Italian, Japanese, Korean, Polish, Portuguese (Brazil), Russian, Simplified Chinese, Spanish (Spain) and Traditional Chinese). Turkish is not available because that language's files are missing from the 2017 data repository.
+
+The reason only a limited number of languages have the new dataset option available is because adding languages still proves to be a tedious process. For the 2017 dataset in particular, since there are even more strings, the number of files to process is gigantic (for some languages, there are almost 1,000 files!) making cleaning and merging the data very time consuming. As an example, here's a process time graph that I generated for fun with matplotlib:
+
+![Process time of DE_de.csv files on Ryzen 7 3750H, GTX 1650, 16GB RAM](/images/writings/termic/csv_process_time_de_de.png)
+
+Of course, this does not account for the additional time required to debug any parsing errors due to special file formatting in some languages; nor the time to integrate the data into the database using Microsoft Azure pipelines.
+
+The aim is for all currently supported languages on termic to have their corresponding 2017 dataset available for the next major update (1.6), slated for release in 2-3 weeks. However, if you would like your language prioritized, please [send me a quick message](https://termic.me/about/#contact-form) and I'll do the necessary.
+
+---
+
+With all that said, does that mean that data problems are no more?
+
+I wish I could say so, but it's far from being the case.
+
+First, as it has been pointed out, some languages, such as Turkish, are missing from the 2017 data repository. These languages thus cannot benefit from the expanded dataset. I'm still going to try and find the archives for these languages though.
+
+Additionally, even for languages with 2017 data, there will still be missing strings. Parsing Microsoft's files proves to be an extraordinarily difficult and cumbersome task as they are formatted in a very bizarre way. This leads to pandas (the Python library used to read Microsoft's files) assuming that some lines have more columns than expected and skipping them, even though no issues are visible when inspecting the files directly in a text editor. This was already the case for original (2020) TM files but to a lesser extent. I've spent much time trying to google my way out of this mess and to apply different solutions, to no avail. But I'm not abandoning just yet.
+
+## What's next?
+
+As you've probably noticed, Microsoft released their new version of Microsoft Terminology Search on July 1st. A few things to note:
+
+- For some reason that is unknown to me, they decided to separate the [glossary](https://msit.powerbi.com/view?r=eyJrIjoiODJmYjU4Y2YtM2M0ZC00YzYxLWE1YTktNzFjYmYxNTAxNjQ0IiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9) and [string search](https://msit.powerbi.com/view?r=eyJrIjoiMmE2NjJhMDMtNTY3MC00MmI2LWFmOWUtYWM5YTVjODI5MjQwIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9) into different pages, which I find rather inconvenient.
+- It seems you can no longer search for terms in another language than English (or did I miss something?).
+- The overall experience has been quite laggy, with dropdowns taking much time to load or not responding correctly to input.
+- On a positive note, the glossary now shows all available translations for a given term, which is handy.
+
+This makes me confident that termic can stand out as a viable alternative to Microsoft Terminology Search in spite of the issues exposed above. Based on survey responses regarding termic's future, it seems many of you still favour termic for its UI and additional features.
+
+As a result, I will keep working on termic at a steady pace, continuing to focus on Microsoft data for now. I might write a new blog post in a few months to give an update on how things are going.
+
+[What was planned for **termic 1.5**](/writings/important_announcement_about_termic) has been changed quite a bit due to major progress on the "missing data mystery." I wanted to focus my efforts on this data before implementing more features and expanding language support. Here is the roadmap for **termic 1.6** (subject to changes!):
+
+- **Full-Text Search Match Type** (originally planned for termic 1.5),
+- **Search Filter for the “Product” Column** (originally planned for termic 1.5),
+- **2020+ Data Support for all the MLP languages** (originally planned for termic 1.5),
+- **2017 Data Support for all currently supported languages**,
+- **Search Optimization**,
+- **Keyboard Shortcuts**.
+
+I wante to sincerely thank all the people who have taken part in the survey regarding the future of termic, as well as those who took the time to email me with feedback or to express their continued interest in using termic. Thank you so much!
+
+And special thanks to MK, [benediktkr](https://github.com/benediktkr) and Vesna!

@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --accent: rgb(13, 204, 143);
+  --accent-darker: #098e64;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+@font-face {
+  font-family: "Bagnard Sans";
+  src: local("BagnardSans.otf") format("otf");
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
+
+@layer utilities {
+  .hover-underline a {
+    @apply relative inline-block text-[var(--accent)];
+  }
+  .hover-underline a::after {
+    content: "";
+    @apply absolute left-0 bottom-0 h-[2px] w-0 bg-[var(--accent-darker)] transition-all duration-300;
+  }
+  .hover-underline a:hover::after {
+    @apply w-full;
+  }
+
+  a.default:hover svg {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  a.bsky:hover svg {
+    color: #0786fd;
+  }
+
+  a.linkedin:hover svg {
+    color: #0a66c2;
+  }
+}
+
+article :is(h2) a.writings-anchor::before {
+  content: "#";
+  position: absolute;
+  transform: translate(-1.5ch, 0.06rem);
+}
+
+article :is(h3) a.writings-anchor::before {
+  content: "##";
+  position: absolute;
+  transform: translate(-2.8ch, 0rem);
+}
+
+article figure:not(:has(pre)) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@keyframes highlightPulse {
+  0% {
+    box-shadow: 0 0 20px rgba(167, 139, 250, 1);
+    background-color: rgba(167, 139, 250, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(167, 139, 250, 0.7);
+    background-color: rgba(167, 139, 250, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(167, 139, 250, 1);
+    background-color: rgba(167, 139, 250, 0.1);
+  }
+}
+
+.highlight-pulse {
+  animation: highlightPulse 1.5s ease-in-out 2;
+}
+
+code {
+  counter-reset: line;
+}
+
+code > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 0.75rem;
+  margin-right: 2rem;
+  text-align: right;
+  color: gray;
+}
+
+.photography-image {
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.photography-image:hover {
+  opacity: 1;
+}

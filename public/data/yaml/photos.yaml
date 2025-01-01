@@ -1,0 +1,13 @@
+- src: "/photographs/berlin_planterwald/edited.jpg"
+  og: "/photographs/berlin_planterwald/original.jpg"
+  width: 1080
+  height: 780
+  alt: "Train"
+  description: "Train"
+  location: "Plänterwald railway station, Berlin, Germany"
+  metadata:
+    camera: "Google Pixel 6 Pro"
+    lens: "back camera 6.81mm f/1.85"
+    aperture: "f/1.9"
+    shutterSpeed: "1/100"
+    iso: "898"

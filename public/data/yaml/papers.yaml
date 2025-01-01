@@ -1,0 +1,7 @@
+- title: "Paper Title"
+  abstract: "abstract"
+  authors: ["Doyen, E."]
+  venue: "Venue Name Name"
+  year: 2024
+  doi: "10.1234/placeholder"
+  featured: false

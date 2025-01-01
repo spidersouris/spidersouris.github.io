@@ -1,0 +1,57 @@
+- name: termic
+  description: An alternative to Microsoft Terminology Search
+  status: dormant
+  image:
+    url: /images/projects/termic.png
+    scale: 1
+  tags: [web app, terminology, localization]
+  techs: [JQuery, Flask, Python, PostgreSQL]
+  links:
+    github: https://github.com/spidersouris/termic
+    demo: https://termic.me/
+  githubStats:
+    stars: 21
+  featured: false
+
+- name: touying-unistra-pristine
+  description: A Touying theme for creating presentation slides in Typst for members of the University of Strasbourg
+  status: active
+  image:
+    url: /images/projects/touying-unistra-pristine.webp
+    scale: 1
+  tags: [presentation, slides, academia]
+  techs: [Typst, Touying]
+  links:
+    github: https://github.com/spidersouris/touying-unistra-pristine
+  githubStats:
+    stars: 4
+  featured: true
+
+- name: tgpin
+  description: A Python utility to monitor Telegram channel pins and deliver email notifications for updates
+  status: completed
+  image:
+    url: /images/projects/tgpin.png
+    scale: 0.8
+  tags: [bookmarking]
+  techs: [Python]
+  links:
+    github: https://github.com/spidersouris/tgpin
+  githubStats:
+    stars: 0
+  featured: false
+
+- name: thealtres-vis
+  description: A visualization web app created as part of an internship for the [Thealtres research project](https://thealtres.pages.unistra.fr/)
+  status: completed
+  image:
+    url: /images/projects/thealtres.png
+    scale: 1
+  tags: [web app, visualization, academia]
+  techs: [TypeScript, D3.js, Leaflet, Hugo]
+  links:
+    github: https://github.com/thealtres/thealtres-vis
+    demo: https://thealtres.pages.unistra.fr/vis
+  githubStats:
+    stars: 0
+  featured: false

@@ -1,0 +1,105 @@
+---
+title: "Important Announcement about termic"
+date: 2023-06-13T11:07:28+02:00
+draft: false
+tags: ["termic", "programming"]
+---
+
+On June 12th, 2023, Microsoft updated the banner shown at the top of the Microsoft Language Portal from this:
+
+![This reads: "Thank you for using Microsoft Portal! The site will be removed on June 30th, 2023. You can download the existing terminology by clicking this link until then. International Style guides will be available on the Microsoft Learn Portal starting July 1st, 2023."](/images/writings/termic/mlp_banner_old.png)
+
+To this:
+
+![This reads: "Thank you for using Microsoft Language Portal! The site will be removed on June 30th, 2023. <b><u>International style guides, terminology downloads, and terminology search</u></b> will be available on the Microsoft Learn Portal starting July 1st, 2023."](/images/writings/termic/mlp_banner_new.png)
+
+---
+
+I'm very glad that Microsoft is reverting their decision to completely shut down the Microsoft Language Portal. I'm confident that their stepping back was made possible thanks to 1) everyone who complained (rightfully so) about the portal shutting down and 2) everyone who talked about termic and shared it on social media: so thank you all for contributing to the return of the beloved Microsoft Language Portal (or, should I say, the inclusion of the MLP to Microsoft Learn)!
+
+Now, this announcement obviously raises the following question: **What should be done with termic?**
+
+## termic: the good, the bad and the ugly
+
+While the initial objective of termic was to provide a very simple replacement of the Microsoft Language Portal, the project grew bigger over time and I sought to conceive a better search experience for translators, both by designing a more clever and intuitive UI and by developing new search features previously unavailable on the Microsoft Language Portal, such as new match types or case-sensible search, as well as pushing QOL changes, such as the easy copy button.
+
+Nonetheless, termic had clear limitations from the start: most particularly, as explained in the [recently published FAQ](https://termic.me/about), the transation memory made available on termic is incomplete compared to what's on the Microsoft Language Portal. That is because Microsoft does not provide all the strings that are currently available on the MLP.
+
+While efforts to compensate this lack of data were made in [termic's latest major update](https://termic.me/changelog/#v1.4.0), by adding a total of 140,000+ exclusive strings from VSCode for 14 languages, it is clear that it is far from being sufficient. Even though VSCode strings feature specific terms, and although benefitting from an easy access to their translations could certainly prove useful to many translators, termic is still missing a certain number of essential strings from other Microsoft products such as Visual Studio or Windows 10/11, as those strings are not provided by Microsoft for use by developers and translators.
+
+## The future of termic
+
+To be absolutely frank, as a translator myself, cutting myself off entirely from the Microsoft Language Portal is hardly conceivable for the reasons mentioned above.
+
+Now that all of that has been said, I am left with four options:
+
+1. Continue working on termic regularly, adding exclusive features and trying to find data sources from Microsoft that are not available on the MLP
+2. Continue working on termic regularly, adding exclusive features and **enlarging the dataset beyond Microsoft products** (while keeping the focus on IT terminology)
+3. Keep termic online without adding new features nor enlarging the dataset
+4. Shut down termic
+
+### Option 1: keeping termic alive with Microsoft data
+
+Option 1 would involve continuing to actively develop termic by adding new, unique features and functionality beyond what the new "Microsoft Learn" service may offer. That way, termic would act as a complementary resource to the current MLP, with more features but less data. I may try to find other data sources as I did with VSCode strings, which were not included on the MLP, but expanding the data would require ongoing time and effort that may not prove worthwhile for most translators given the MLP's large database.
+
+### Option 2: keeping termic alive with additional, non-Microsoft data
+
+Option 2 is equivalent to option 1, except that the objective would be for termic to expand its scope to include terminology data from other products, moving beyond just a "Microsoft-only terminology database." Specific products have not been selected yet, but the main goal would be for termic to remain a terminology search service focused on IT terms. This would partly solve the "lack of data" problem by adding strings from other products.
+
+### Option 3: keeping termic "as is"
+
+Option 3 would involve keeping termic online in its current state, with no further development or additions. Plans would be to continue shipping bug fixes, though. **Version 1.5** (currently in development) would thus be the final major update to termic, with the following being added:
+
+- **Full-Text Search Match Type** (to be considered as an even broader "broad match": for instance, searching for "developer" would also search for other strings containing that same stem: "develop", "developing", etc.),
+- **Switch Source/Target Language Button**,
+- **Search Filter for the "Product" Column**,
+- **Support for all the MLP languages**,
+- **Access to all the scripts used for string extraction as well as language files**.
+
+### Option 4: shutting down termic
+
+Completely shutting down termic right now is clearly not an option that I am favouring. That said, it may happen in a few months depending on how much the service is still being used. The costs of running termic are significant and there is no need to keep the service online if nobody is using it.
+
+---
+
+Whatever option is chosen, the source code of termic will remain available [on GitHub](https://github.com/Spidersouris/termic). If you want to use it, please feel free to do so!
+
+## Make your voice heard
+
+The reason I'm writing this blog post is to have your input before taking my final decision. After all, as users of both termic and the Microsoft Language Portal, you should have your word to say on such a matter.
+
+I've created a quick survey that you can fill to help shape the future of termic. This should not take you more than 5-10 minutes and your input would be very much appreciated.
+
+<button>
+  <a href="https://tally.so/r/3qakGk" target="_blank">
+    Take part in the survey
+  </a>
+</button>
+
+The survey will stay online until June 25th, 10:00 (UTC+0). A second blog post will be published a few days after the survey ends to give you more information on what you can expect next.
+
+## Final words
+
+When I started developing termic on April 28th, never would I have thought that such a project could generate that much enthusiasm.
+
+![This is the very first UI of termic!](/images/writings/termic/termic_v1.png)
+
+termic as my very first "big" programming project taught me a lot, and while I'm pretty happy about this whole journey, there are so many things that I would do differently if I had to start from scratch.
+
+While I've been coding on and off (mostly off...) since I was 16, my programming experience was thur far limited to creating a couple of browser add-ons, some Discord bot with useless features (such as making requests to the [NASA's APIs](https://api.nasa.gov/)), and developing my website. They cannot really be considered programming projects per se.
+
+With termic, I was able to use and expand on content that was taught to me as part of my Master's degree (special thanks to Prof. Bernhard and Prof. Ruiz Fabo from the University of Strasbourg for their awesome Python and SQL/RegExp courses, respectively). This has made me all the more excited about programming and incites me to go even further by learning new languages, frameworks and computer science theory, as well as working on new projects, even if they may not arouse that much interest.
+
+I want to sincerely thank all the people who used termic thus far, those who shared it with their friends or colleagues, and those whose feedback helped improve termic's usability. I'm very grateful to all the people that I have met thanks to this project, and with whom I was able to have a chat, whether it be about translation or other topics.
+
+My final words go to **Birgitte** for her €5 donation on [buymeacoffee](https://www.buymeacoffee.com/edoyen). Thank you so much Birgitte!
+
+See you in two weeks!
+
+Best,
+Enzo Doyen
+
+<small>
+  (And first post on this blog I created back in July 2022. I was sure it would
+  prove useful some day or another!)
+</small>

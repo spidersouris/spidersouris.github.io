@@ -1,0 +1,409 @@
+---
+title: "Smooth Bookmarking using Notion's API"
+date: 2024-01-02T10:48:22+01:00
+draft: false
+tags: ["programming"]
+---
+
+## Introduction
+
+[Notion](https://notion.so/) has been part of my "life workflow"<Footnote idName={1}>I feel like much of the “productivity”-related stuff has, to my disappointment, been largely guruized over the years, so I’d rather use other formulations.</Footnote> for several years now. While I prefer using [Obsidian](https://obsidian.md/) for note-taking (better writing UI; tons of community plugins; easy to publish as a customizable static website with third-party tools), I find Notion especially useful to keep track of database-friendly information. In particular, I created different Notion databases for saving movies that I want to watch, or books and articles that I plan to read in the future.
+
+What I especially like with Notion's database system is that every row of one's database is considered an independent page. This means that one can comment each one of them: for instance, I may add a comment to indicate why I added such movie or book (e.g. a loving friend recommended it to me; or someone talked about it in a podcast). For articles, I try to briefly summarize every article I read to get a good grasp of the content, I'm saving quotes that I find relevant or that I'd like to comment on, and I'm writing on how this article proved impactful to me. I think this helps retain important information and it comes handy when you want to delve deeply into a specific topic you have already read articles about, as this means you already have access to previous ideas, opinions and knowledge just a few clicks away.
+
+## The problem
+
+Filling databases manually can sometimes be cumbersome though, depending on how detailed and exhaustive you want them to be. Let's take my Articles database as an example: that's the database I'm using to store articles published on the Internet that I'd like to read. It's actually based on [a template named "Easy Web Bookmark", created by Red Gregory](https://www.redgregory.com/notion/2022/9/3/notion-made-easy-how-to-build-a-web-bookmark-dashboard) and which I have slightly customized. There are 10 columns in total:
+
+```
+Name | Date Saved | Status | Priority | Tags | Link | Category | Favorite | Archive URL | HN URL
+```
+
+I think most of the column names are speaking for themselves.
+
+- "**Status**" is a multi-select that can be one of the following: "To Read"; "Reading Article"; "Reading Comments"; "Annotating"; "Done and Annotated".
+- "**Priority**" acts as a simple boolean variable.
+- "**Category**" is a relation that can be one of the following: "Articles"; "Articles + HN Comments"; "HN Threads". In Notion, relations are used to connect one database to other databases.
+
+As an avid [Hacker News](https://news.ycombinator.com/news) reader, most of the articles that I gather actually come from there, and I always find it extremely interesting reading other people's comments as a complement to the article. I find it a great way to either get counteropinions, or discover other sources or works to delve deeper into the topic.
+
+While not all columns necessarily need to be filled when adding an article, some of them do, and I must say that I find Notion's database-filling UX extremely unpleasant and frustrating. Not only is it hard to navigate databases with many columns (their scroll overflow is especially bad in my humble opinion), but the whole UI feels junky and unresponsive, and it gets more and more so as your databases get bigger. It sometimes takes more than one second (!) for the cell I clicked on to be selected, and you can't even input from one cell to the other without first exiting the cell you've been typing in.
+
+Honestly, this behaviour alone just made me stack up a load of articles inside a Firefox bookmark folder only to forget about them at some point.
+
+But surely, there must be a better way! [Notion launched their very first version of the API as a public beta in 2021](https://www.notion.so/releases/2021-05-13), and while it didn't catch much of my attention at the time, I recently thought about how useful it could be to use the API in order to add new articles to the database from the terminal.
+
+## Using Notion's API as a solution
+
+[Notion's API is quite well documented](https://developers.notion.com/docs/getting-started) and easy to start with thanks to the included examples. The page that will be the most interesting to us is [Working with databases](https://developers.notion.com/docs/working-with-databases), as it contains all the information necessary to fill databases.
+
+The first step consists in creating a [connection](https://www.notion.so/help/add-and-manage-connections-with-the-api), which will enable us to get our API key. Then, before making any call to the API, every page we want to get or give information to needs to be shared with the connection. This is done by accessing the page, clicking on the three dots icon in the upper right corner and selecting the previously created connection.
+
+![Notion's "Add connections" link in hamburger menu](https://i.imgur.com/PRmZW86.png)
+
+From that point on, it's time to fill the database! Let's recap the columns that we want to fill using the API:
+
+- Name,
+- Tags,
+- Link,
+- Category,
+- Archive URL,
+- HN URL (optional)
+
+We can keep "Date Saved" and "Status" blank; Notion will fill them up automatically with default values: for the first one, the date and time at which the row was added through the API, and for the second, the "Unread" status.
+
+## Implementation process
+
+Based on the information above, we want our program's usage to look roughly like this:
+
+```
+usage: notion_add_bkmark.py NAME URL CATEGORY [HN_URL] [-t TAGS [TAGS ...]]
+```
+
+This would, as a result, make a call to the Notion API like so:
+
+```
+curl POST 'https://api.notion.com/v1/databases/[DATABASE_ID]'
+  -H 'Authorization: Bearer '"[SECRET_TOKEN]"''
+  -H 'Notion-Version: 2022-06-28'
+  --data [json]
+```
+
+### Main Logic
+
+We will use a JSON template that we will get filled depending on the data that we get as arguments when running our program from the terminal. We just need to [specify the database ID](https://developers.notion.com/reference/retrieve-a-database) in that template.
+
+```json
+{
+  "parent": {
+    "type": "database_id",
+    "database_id": "DATABASE_ID"
+  },
+  "properties": {
+    "Name": {
+      "type": "title",
+      "title": [
+        {
+          "type": "text",
+          "text": {
+            "content": null
+          }
+        }
+      ]
+    },
+    "Link": {
+      "type": "url",
+      "url": null
+    },
+    "HN URL": {
+      "type": "url",
+      "url": null
+    },
+    "Archive URL": {
+      "type": "url",
+      "url": null
+    },
+    "Category": {
+      "relation": [
+        {
+          "id": null
+        }
+      ]
+    }
+  }
+}
+```
+
+All that our program then needs to do is fill the null fields with the specified information. Seems easy enough!
+
+Let's start with loading up the JSON template that we have just created:
+
+```py
+with open("data.json") as f:
+    data = json.load(f)
+```
+
+### Name
+
+Filling the JSON file with the name of the article is a real piece of cake. We just need to specify the right JSON path:
+
+```py
+def set_name(data, name):
+    data["properties"]["Name"]["title"][0]["text"]["content"] = name
+```
+
+### Tags
+
+I have decided to add the tags that I use to a text file, which is then loaded up as a list. This list probably won't change much so I don't think it's necessary to make a GET call every time to retrieve all tags in the database and compare with the input.
+
+![My somewhat quirky interests](https://i.imgur.com/HWbRAdm.png)
+
+We define a template for tags so that if we ever need to add several tags to one article, we can simply add several pairs of key/values to "multi_select":
+
+```py
+TAGS_TEMPLATE = {
+    "Tags": {
+      "id": "tags",
+      "type": "multi_select",
+      "multi_select": [
+      ]
+    }
+}
+```
+
+As a bonus, the script resorts to [RapidFuzz](https://github.com/rapidfuzz/RapidFuzz), a fast Levenshtein Distance implementation, to check for similar tags if a typo was made. Hear, hear: this is probably overkill, but let's make things a bit more fun, shall we?
+
+```py
+def set_tags(data):
+    data["properties"]["Tags"] = TAGS_TEMPLATE["Tags"]
+    for tag in args.tags:
+        if tag not in TAGS:
+            match = process.extractOne(tag, TAGS, scorer=fuzz.ratio, score_cutoff=80)
+            if match:
+                print(f"Tag {tag} not found. Did you mean {match[0]}?")
+            else:
+                print(f"Tag {tag} not found.")
+            sys.exit()
+
+        data["properties"]["Tags"]["multi_select"].append({"name": tag})
+```
+
+### Category
+
+In my Notion template, categories are defined as relations, that is secondary databases that share a part of the main database. This means that I have three "subdatabases", one for each of my categories ("Articles"; "Articles + HN Comments"; "HN Threads").
+
+As a result, Notion expects you to explicitly share your subdatabases with your connection; otherwise it will deny your API calls (this took me some time to figure out).
+
+As a reminder, the "Category" JSON property looks like this:
+
+```json
+"Category": {
+  "relation": [
+    {
+      "id": null
+    }
+  ]
+}
+```
+
+We can define a simple dictionary that will map our input to the corresponding database ID:
+
+```py
+CATEGORIES = {
+    "A": "ARTICLES_DATABASE_ID", # Articles database
+    "AHN": "ARTICLES_HN_DATABASE_ID", # Articles + HN Comments database
+    "HN": "HN_DATABASE_ID", # HN Threads database
+}
+```
+
+And finally add the matching database ID to the JSON that we want to POST:
+
+```py
+data["properties"]["Category"]["relation"][0]["id"] = CATEGORIES[category]
+```
+
+### URLs
+
+Just like specifying the name, adding a simple URL is quite straightforward:
+
+```py
+data["properties"]["Link"]["url"] = url
+```
+
+Things get more complex as we tackle the archive URL.
+
+#### Archive URL
+
+I have made it a habit to archive articles as too many times, I saved articles only to discover several months later that they had been taken down. For archiving, I have been relying on [archive.today](https://archive.today) (aka archive.is) thus far. It's much faster compared to [web.archive.org](https://web.archive.org/).
+
+Unfortunately, [archive.today does not provide any official public API](https://blog.archive.today/post/678411898279067648/hello-i-am-developing-an-application-that); but one can still use the archive.today/submit endpoint. I thus tried using a couple of existing wrappers in order to make the archive request: namely [palewire/archiveis](https://github.com/palewire/archiveis) (Python) and [HRDepartment/archivetoday](https://github.com/HRDepartment/archivetoday) (JS).
+
+Both work by making a POST request to archive.today/submit, and both returned a connection error. According to [a GitHub issue posted in the HRDepartment/archivetoday project](https://github.com/HRDepartment/archivetoday/issues/20), archive.today has reinforced its CAPTCHA system over the years, which makes it increasingly difficult for the wrappers to bypass the protections and make automatic archiving requests.
+
+So what do you do when things made by other people do not work? You try to make it yourself!
+
+I decided not to use requests as the same problem kept happening when POSTing. Perhaps Selenium could be the way? Directly working with the browser instead of interacting with the API endpoint might help bypass any connection barriers.
+
+We'll create a new, separate `archivescraper.py` file in which to write this logic.
+
+```py
+from selenium import webdriver
+from selenium.webdriver import ChromeService as Service
+
+options = webdriver.ChromeOptions()
+options.add_argument("--headless")
+service = Service(executable_path=CHROMEDRIVER_PATH)
+driver = webdriver.Chrome(options=options, service=service)
+```
+
+To be even more safe, let's randomize the user agent at every request to avoid potential blocking using [fake-useragent](https://pypi.org/project/fake-useragent/).
+
+```py
+from fake_useragent import UserAgent
+
+ua = UserAgent()
+user_agent = ua.random
+options.add_argument(f"--user-agent={user_agent}")
+```
+
+Then, we simply need to load the archive.is webpage, target the input field, paste the URL that we want to archive, and submit the request in a way that seems to be manual enough to avoid any suspicions.
+
+```py
+driver.get("https://archive.is/")
+
+driver.find_element(By.XPATH, "//input[@id='url']").send_keys(url)
+driver.find_element(By.XPATH, "//input[@value='save']").click()
+driver.implicitly_wait(10)
+```
+
+Once the request is sent, things can go two ways: either the page is already archived (yay!) and we only need to retrieve the latest archive URL, or it has not been archived yet and we need to wait for the archive process to finish.
+
+The presence of either "wip" or "submit" in the URL indicates that there is no existing archive and that the archive process has been launched. From then on, we can use Seleinum's WebDriverWait to provide updates on the archiving process and return the URL once the operation is complete.
+
+```py
+if archive_url.startswith("https://archive.is/wip/"):
+    print("Archive is not available. Requesting…\n"
+          "It should not take more than 2 minutes.")
+    request_time = time.time()
+    short_wt = 30
+    long_wt = 120
+    # wait until we get into the queue
+    queue = WebDriverWait(driver, short_wt).until(
+        EC.presence_of_element_located((By.XPATH, "/html/body/div/span"))
+        )
+    if queue:
+        pos = queue.text.split(" ")[0]
+        print(f"Got into queue (position: {pos})")
+
+    # wait until we get out of the queue
+    loading = WebDriverWait(driver, short_wt).until(
+        EC.presence_of_element_located((
+            By.XPATH,
+            "/html/body/div/img[@src='https://archive.is/loading.gif']"
+            ))
+        )
+    if loading:
+        print("Archiving…")
+
+    # wait until the page is archived and we get the archive URL
+    loaded_wait = WebDriverWait(driver, long_wt)
+    loaded = loaded_wait.until(lambda driver: "wip" not in driver.current_url)
+    if loaded:
+        print(f"Finished after {round(time.time() - request_time, 1)} seconds.")
+        archive_url = driver.current_url
+    else:
+        print(f"Timed out after {round(time.time() - request_time, 1)} seconds.")
+
+driver.quit()
+
+return archive_url
+```
+
+Finally, let's go back to our main script and import the scraper:
+
+```py
+import archivescraper as arsc
+
+def get_archive_url(url):
+    print("Finding archive for", url)
+    archive_url = arsc.send_archive_request(url)
+    return archive_url
+```
+
+#### Adding all the URLs together
+
+Now that we have got all our URLs (the article URL and the HN url being specified as arguments; and the archive URL being retrieved automatically), let's add them to our JSON.
+
+```py
+def set_urls(data, url, archive_url=None, hn_url=None):
+    data["properties"]["Link"]["url"] = url
+    if archive_url:
+        data["properties"]["Archive URL"]["url"] = archive_url
+    if hn_url:
+        data["properties"]["HN URL"]["url"] = hn_url
+```
+
+We can also add an optional -na argument just in case we don't want to archive the URL:
+
+```py
+parser.add_argument("-na", "--no-archive", action="store_true",
+                    help="Don't archive the URL")
+```
+
+Finally, let's add set_urls() to our main logic:
+
+```py
+if args.no_archive:
+    set_urls(data, args.url)
+elif not args.no_archive:
+    archive_url = get_archive_url(args.url)
+    if archive_url is None:
+        print(f"No archive found for {args.url}")
+        if args.hn_url:
+            set_urls(data, args.url, hn_url=args.hn_url)
+        else:
+            set_urls(data, args.url)
+    elif archive_url:
+        if args.hn_url:
+            set_urls(data, args.url, archive_url, args.hn_url)
+        else:
+            set_urls(data, args.url, archive_url=archive_url)
+```
+
+And it's done! We then just need to send our request:
+
+```py
+def send_request(data):
+    response = requests.post("https://api.notion.com/v1/pages", headers=HEADERS,
+                            json=data)
+
+    if response.status_code == 200:
+        print("Bookmark added successfully!")
+    else:
+        print("Error adding bookmark")
+        print(response.text)
+```
+
+### Bonus: Creating an alias for PowerShell 7
+
+I thought I'd make things even simpler by creating a "bmark" alias which would enable me to get rid of the "python [script.py]" every time I want to add a new bookmark. While I originally created it for the command prompt, I discovered the latest version of PowerShell (7) had been announced by Microsoft some time ago. Perfect time to make the switch!
+
+The creation of a persistent alias for PowerShell can reveal a bit more tricky than a simple `doskey` and the addition of an entry to regedit.
+
+You first have to create a PowerShell profile if you don't already have one, like me. You can use $PROFILE to get the path where your profile will be stored by default.
+
+```powershell
+if (!(Test-Path -Path $PROFILE)) {
+  New-Item -ItemType File -Path $PROFILE -Force
+}
+```
+
+From then, you can edit your profile using your favourite text editor, or Notepad:
+
+```powershell
+ notepad $PROFILE
+```
+
+The tricky bit is that PowerShell expects you to have a predefined function to use Set-Alias. That means for every alias that you want to add, you'll have to create a function for it:
+
+```powershell
+function bmark {
+    if ($args.Count) { python "notion_add_bkmark.py" @args } else { Throw "Arguments missing." }
+}
+```
+
+And ta-dah!
+
+```powershell
+bmark "Lab Notebooks" "https://sambleckley.com/writing/lab-notebooks.html" "AHN" "https://news.ycombinator.com/item?id=38769700" -t "knowledge management"
+```
+
+I'm sure the script could benefit from many other improvements, but it's fine as is. I'll write another blogpost if any major changes come in.
+
+---
+
+I'd like to conclude on an awesome feature that was added to PowerShell 7: autocompletions! One nitpick though: I am not sure why, but the right arrow key was chosen to accept the autocompletion. There's probably some good reason behind that decision, but if you're more of a Tab person as I am, here's some code that you can add to your PowerShell profile file to have Tab act as "Accept autocompletion":
+
+```powershell
+ Set-PSReadLineKeyHandler -Chord "Tab" -Function AcceptSuggestion
+```
