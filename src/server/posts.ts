@@ -77,9 +77,20 @@ function processFrontmatter(data: matter.GrayMatterFile<string>["data"]) {
 
 export async function getAllPosts(): Promise<Writing[]> {
   try {
+    const fetchOptions = {
+      headers: {
+        "Content-Type": "application/json",
+        Origin: "https://edoyen.com/",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers":
+          "Origin, X-Requested-With, Content-Type, Accept",
+      },
+    };
     const filesResponse = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/data/posts/posts.json`
+      //"/data/posts/posts.json"
+      `${process.env.NEXT_PUBLIC_BASE_URL}/data/posts/posts.json`,
       //`http://localhost:3000/data/posts/posts.json`
+      fetchOptions
     );
     if (!filesResponse.ok) {
       console.error("Failed to fetch list of post files");

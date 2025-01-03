@@ -2,9 +2,20 @@ import { parse } from "yaml";
 
 export async function fetchYamlData(filename: string) {
   try {
+    const fetchOptions = {
+      headers: {
+        "Content-Type": "text/yaml",
+        Origin: "https://edoyen.com/",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers":
+          "Origin, X-Requested-With, Content-Type, Accept",
+      },
+    };
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/data/yaml/${filename}`
+      //"/data/yaml/" + filename
+      `${process.env.NEXT_PUBLIC_BASE_URL}/data/yaml/${filename}`,
       //`http://localhost:3000/data/yaml/${filename}`
+      fetchOptions
     );
     if (!response.ok) return [];
     return parse(await response.text());
@@ -16,9 +27,20 @@ export async function fetchYamlData(filename: string) {
 
 export async function fetchMdxFile(filepath: string): Promise<string | null> {
   try {
+    const fetchOptions = {
+      headers: {
+        "Content-Type": "text/markdown",
+        Origin: "https://edoyen.com/",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers":
+          "Origin, X-Requested-With, Content-Type, Accept",
+      },
+    };
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/data/${filepath}`
+      //"/data/" + filepath
+      `${process.env.NEXT_PUBLIC_BASE_URL}/data/${filepath}`,
       //`http://localhost:3000/data/${filepath}`
+      fetchOptions
     );
     if (!response.ok) {
       console.error(`Failed to fetch ${filepath}: ${response.statusText}`);

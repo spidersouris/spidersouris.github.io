@@ -23,6 +23,11 @@ const nextConfig: NextConfig = {
   },
   output: "export",
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+  env: {
+    NEXT_PUBLIC_BASE_URL: process.env.GITHUB_ACTIONS
+      ? "https://arcane-eyrie-56789-59e6366cc58b.herokuapp.com/edoyen.com"
+      : "http://localhost:3000",
+  },
   images: {
     loader: "custom",
     loaderFile: "src/lib/imageLoader.ts",

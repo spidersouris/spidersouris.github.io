@@ -38,3 +38,7 @@ next-env.d.ts
 # writing drafts
 src/content/posts/_*
 .vercel
+
+# other mds
+/*.md
+!/README.md

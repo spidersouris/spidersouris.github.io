@@ -29,9 +29,20 @@ export async function getCurrentNow(): Promise<NowPost | null> {
 
 export async function getPastNowPosts(): Promise<NowPost[]> {
   try {
+    const fetchOptions = {
+      headers: {
+        "Content-Type": "application/json",
+        Origin: "https://edoyen.com/",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers":
+          "Origin, X-Requested-With, Content-Type, Accept",
+      },
+    };
     const pastFilesResponse = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/data/now/pastNows/pastNows.json`
+      //"/data/now/pastNows/pastNows.json"
+      `${process.env.NEXT_PUBLIC_BASE_URL}/data/now/pastNows/pastNows.json`,
       //`http://127.0.0.1:3000/data/now/pastNows/pastNows.json`
+      fetchOptions
     );
     if (!pastFilesResponse.ok) {
       console.error("Failed to fetch list of past nows");

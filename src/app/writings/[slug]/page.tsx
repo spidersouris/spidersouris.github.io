@@ -19,9 +19,6 @@ export default async function PostPage(props: { params: Params }) {
     notFound();
   }
 
-  console.log("post", post);
-  console.log("postContent", post.content);
-
   return (
     <div className="flex gap-8">
       {/* Set footnote counter to 0 for article */}
