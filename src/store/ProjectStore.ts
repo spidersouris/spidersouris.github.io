@@ -10,6 +10,7 @@ interface ProjectStore {
   toggleFilter: (status: ProjectStatus) => void;
   filteredProjects: () => Project[];
   featurableProjects: () => Project[];
+  isLoading: boolean;
 }
 
 export const useProjectStore = create<ProjectStore>((set, get) => ({
@@ -17,7 +18,7 @@ export const useProjectStore = create<ProjectStore>((set, get) => ({
   activeFilters: [],
   fetchProjects: async () => {
     const data = await getProjects();
-    set({ projects: data });
+    set({ projects: data, isLoading: false });
   },
   toggleFilter: (status) => {
     set((state) => ({
@@ -43,4 +44,5 @@ export const useProjectStore = create<ProjectStore>((set, get) => ({
     const state = get();
     return state.projects.filter((project) => project.featured);
   },
+  isLoading: true,
 }));

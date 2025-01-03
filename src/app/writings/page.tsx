@@ -6,15 +6,14 @@ import { IconPencil } from "@tabler/icons-react";
 import { useEffect } from "react";
 import { usePostsStore } from "@/store/PostsStore";
 import type { Writing } from "@/types/post";
+import SkeletonPostCard from "@/components/skeletons/SkeletonPostCard";
 
 export default function WritingsPage() {
-  const { posts, fetchPosts } = usePostsStore();
+  const { posts, fetchPosts, isLoading } = usePostsStore();
 
   useEffect(() => {
     fetchPosts();
   }, [fetchPosts]);
-
-  console.log("posts", posts);
 
   return (
     <div className="space-y-8">
@@ -25,6 +24,7 @@ export default function WritingsPage() {
       />
 
       <div className="grid gap-6">
+        {isLoading && <SkeletonPostCard />}
         {posts.map((post) => (
           <PostCard key={post.slug} writing={post as Writing} />
         ))}

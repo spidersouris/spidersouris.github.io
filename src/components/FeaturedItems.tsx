@@ -6,15 +6,24 @@ import { AcademiaCard } from "@/components/AcademiaCard";
 import { useProjectStore } from "@/store/ProjectStore";
 import { useAcademiaStore } from "@/store/AcademiaStore";
 import { useEffect } from "react";
+import SkeletonGenericCard from "./skeletons/SkeletonGenericCard";
 
 export function FeaturedItems() {
-  const { featurableProjects, fetchProjects } = useProjectStore();
+  const {
+    featurableProjects,
+    fetchProjects,
+    isLoading: isLoadingProject,
+  } = useProjectStore();
 
   useEffect(() => {
     fetchProjects();
   }, [fetchProjects]);
 
-  const { featurableAcademiaItems, fetchAcademia } = useAcademiaStore();
+  const {
+    featurableAcademiaItems,
+    fetchAcademia,
+    isLoading: isLoadingAcademia,
+  } = useAcademiaStore();
 
   useEffect(() => {
     fetchAcademia();
@@ -28,6 +37,7 @@ export function FeaturedItems() {
     >
       <h2 className="text-2xl font-bold">Featured</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {isLoadingProject && <SkeletonGenericCard height={475} />}
         {featurableProjects().map((project) => (
           <ProjectCard
             key={project.name}
@@ -36,6 +46,7 @@ export function FeaturedItems() {
             showLabel={true}
           />
         ))}
+        {isLoadingAcademia && <SkeletonGenericCard height={475} />}
         {featurableAcademiaItems.map((academiaItem) => (
           <AcademiaCard key={academiaItem.title} academiaItem={academiaItem} />
         ))}

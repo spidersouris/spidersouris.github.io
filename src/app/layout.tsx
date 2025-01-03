@@ -4,8 +4,7 @@ import type { Metadata } from "next";
 import Navigation from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import { SkeletonTheme } from "react-loading-skeleton";
 
 import "./globals.css";
 
@@ -34,10 +33,10 @@ export default function RootLayout({
         className={`${libreBaskervilleFont.variable} max-w-4xl mx-auto px-6 py-12 md:px-8`}
       >
         <Navigation />
-        <main className="mt-16">{children}</main>
+        <SkeletonTheme baseColor="#0a0a0a" highlightColor="#1f2937">
+          <main className="mt-16">{children}</main>
+        </SkeletonTheme>
         <Footer />
-        <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );

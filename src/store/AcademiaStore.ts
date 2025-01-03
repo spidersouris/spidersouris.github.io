@@ -8,6 +8,7 @@ interface AcademiaStore {
   teaching: Teaching[];
   featurableAcademiaItems: AcademiaItem[];
   fetchAcademia: () => Promise<void>;
+  isLoading: boolean;
 }
 
 export const useAcademiaStore = create<AcademiaStore>((set) => ({
@@ -26,6 +27,13 @@ export const useAcademiaStore = create<AcademiaStore>((set) => ({
       (item) => item.featured
     );
 
-    set({ presentations, papers, teaching, featurableAcademiaItems });
+    set({
+      presentations,
+      papers,
+      teaching,
+      featurableAcademiaItems,
+      isLoading: false,
+    });
   },
+  isLoading: true,
 }));

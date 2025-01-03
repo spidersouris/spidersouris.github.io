@@ -5,6 +5,7 @@ import { Photo } from "react-photo-album";
 interface PhotographyStore {
   photos: Photo[];
   fetchPhotos: () => Promise<void>;
+  isLoading: boolean;
 }
 
 export const usePhotographyStore = create<PhotographyStore>((set) => ({
@@ -12,9 +13,10 @@ export const usePhotographyStore = create<PhotographyStore>((set) => ({
   fetchPhotos: async () => {
     try {
       const photos = await getPhotos();
-      set({ photos });
+      set({ photos, isLoading: false });
     } catch (error) {
       console.error("Failed to fetch photos", error);
     }
   },
+  isLoading: true,
 }));

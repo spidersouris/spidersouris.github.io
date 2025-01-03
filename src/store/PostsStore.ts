@@ -5,6 +5,7 @@ import type { Post } from "@/types/post";
 interface PostsStore {
   posts: Post[];
   fetchPosts: () => Promise<void>;
+  isLoading: boolean;
 }
 
 export const usePostsStore = create<PostsStore>((set) => ({
@@ -12,9 +13,10 @@ export const usePostsStore = create<PostsStore>((set) => ({
   fetchPosts: async () => {
     try {
       const posts = await getAllPosts();
-      set({ posts });
+      set({ posts, isLoading: false });
     } catch (error) {
       console.error("Failed to fetch posts", error);
     }
   },
+  isLoading: true,
 }));

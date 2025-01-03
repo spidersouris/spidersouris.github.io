@@ -3,11 +3,12 @@ import { PageIntro } from "@/components/PageIntro";
 import PhotoGallery from "@/components/photography/PhotoGallery";
 import { usePhotographyStore } from "@/store/PhotographyStore";
 import { useEffect } from "react";
+import SkeletonGenericCard from "@/components/skeletons/SkeletonGenericCard";
 
 import { IconArrowAutofitWidth, IconCamera } from "@tabler/icons-react";
 
 export default function PhotographyPage() {
-  const { photos, fetchPhotos } = usePhotographyStore();
+  const { photos, fetchPhotos, isLoading } = usePhotographyStore();
 
   useEffect(() => {
     fetchPhotos();
@@ -54,6 +55,7 @@ export default function PhotographyPage() {
         />
       </div>
       <hr className="border-gray-200 dark:border-gray-800 p-2" />
+      {isLoading && <SkeletonGenericCard height={400} />}
       <PhotoGallery initialPhotos={photos} />
     </>
   );

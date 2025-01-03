@@ -5,7 +5,6 @@ import { useState, JSX } from "react";
 import Lightbox, { RenderSlideFooterProps } from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
-import Captions from "yet-another-react-lightbox/plugins/captions";
 import Download from "yet-another-react-lightbox/plugins/download";
 
 import Image from "next/image";
@@ -50,9 +49,6 @@ import { RenderSlideProps, SlideImage } from "yet-another-react-lightbox";
 import { IconArrowAutofitWidth } from "@tabler/icons-react";
 import { CustomIcon } from "../CustomIcon";
 import { MapPin } from "@phosphor-icons/react";
-
-// Prevent the default behavior of yet-another-react-lightbox
-// to allow the compare slider to work
 
 // Custom slide component for the lightbox
 const CustomSlide = ({ slide }: RenderSlideProps<SlideImage>) => {

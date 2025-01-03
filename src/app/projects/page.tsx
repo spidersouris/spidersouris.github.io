@@ -10,10 +10,16 @@ import {
 } from "@/constants/projectStatus";
 import { PageIntro } from "@/components/PageIntro";
 import { IconBrandPolymer } from "@tabler/icons-react";
+import SkeletonGenericCard from "@/components/skeletons/SkeletonGenericCard";
 
 export default function ProjectsPage() {
-  const { activeFilters, fetchProjects, toggleFilter, filteredProjects } =
-    useProjectStore();
+  const {
+    activeFilters,
+    fetchProjects,
+    toggleFilter,
+    filteredProjects,
+    isLoading,
+  } = useProjectStore();
 
   useEffect(() => {
     fetchProjects();
@@ -60,6 +66,7 @@ export default function ProjectsPage() {
       </section>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {isLoading && <SkeletonGenericCard count={4} height={400} />}
         {filteredProjects().map((project) => (
           <ProjectCard key={project.name} project={project} />
         ))}
