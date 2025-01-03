@@ -17,8 +17,7 @@ export async function fetchYamlData(filename: string) {
 export async function fetchMdxFile(filepath: string): Promise<string | null> {
   try {
     const response = await fetch(
-      `https://edoyen.com/data/${filepath}`
-      //`${process.env.NEXT_PUBLIC_BASE_URL}/data/${filepath}`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/data/${filepath}`
       //`http://localhost:3000/data/${filepath}`
     );
     if (!response.ok) {

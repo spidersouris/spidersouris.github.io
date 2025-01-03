@@ -44,6 +44,11 @@ export default function PhotographyPage() {
               <br />
               Click on a picture to view an enlarged version and the picture
               metadata, and use the before/after editing slider.
+              <span className="inline font-bold md:hidden">
+                <br />
+                Note: small screens ({"<"} 768px) may not offer the best
+                experience for the before/after slider.
+              </span>
             </>
           }
         />

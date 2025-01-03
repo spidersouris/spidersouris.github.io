@@ -33,6 +33,7 @@ export function FeaturedItems() {
             key={project.name}
             project={project}
             showStatus={false}
+            showLabel={true}
           />
         ))}
         {featurableAcademiaItems.map((academiaItem) => (

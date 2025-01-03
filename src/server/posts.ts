@@ -78,8 +78,7 @@ function processFrontmatter(data: matter.GrayMatterFile<string>["data"]) {
 export async function getAllPosts(): Promise<Writing[]> {
   try {
     const filesResponse = await fetch(
-      `https://edoyen.com/data/posts/posts.json`
-      //`${process.env.NEXT_PUBLIC_BASE_URL}/data/posts/posts.json`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/data/posts/posts.json`
       //`http://localhost:3000/data/posts/posts.json`
     );
     if (!filesResponse.ok) {
@@ -88,8 +87,6 @@ export async function getAllPosts(): Promise<Writing[]> {
     }
 
     const files: string[] = await filesResponse.json();
-
-    console.log(files);
 
     const posts = await Promise.all(
       files
@@ -114,8 +111,6 @@ export async function getAllPosts(): Promise<Writing[]> {
       if (process.env.NODE_ENV === "development") return true;
       return !post.frontmatter.draft;
     });
-
-    console.log("filteredPosts", filteredPosts);
 
     return filteredPosts.sort(
       (a, b) => b!.frontmatter.date.getTime() - a!.frontmatter.date.getTime()

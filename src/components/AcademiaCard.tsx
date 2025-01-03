@@ -40,13 +40,20 @@ export function AcademiaCard({ academiaItem }: { academiaItem: AcademiaItem }) {
       animate={{ opacity: 1, y: 0 }}
       className="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
     >
-      <div
-        className={`flex justify-center items-center relative mt-5 h-36 w-4/5 mr-auto ml-auto rounded-lg ${
-          itemFeatures[academiaItem.type].bg
-        }`}
+      <Link
+        href={{
+          pathname: "/academia",
+          hash: academiaItem.anchorId,
+        }}
       >
-        {itemFeatures[academiaItem.type].icon}
-      </div>
+        <div
+          className={`flex justify-center items-center relative mt-5 h-36 w-4/5 mr-auto ml-auto rounded-lg opacity-90 hover:opacity-100 ${
+            itemFeatures[academiaItem.type].bg
+          }`}
+        >
+          {itemFeatures[academiaItem.type].icon}
+        </div>
+      </Link>
       <div className="p-8 pt-4 space-y-4">
         <h3 className="text-xl font-bold">
           {toTitle(academiaItem.type)}: {academiaItem.title}
@@ -95,12 +102,26 @@ export function AcademiaCard({ academiaItem }: { academiaItem: AcademiaItem }) {
             {academiaItem.type === "talk" ? (
               <span className="inline-flex items-center gap-1.5">
                 <Slideshow size={18} /> Slides{" "}
-                {academiaItem.material ? "" : "(coming soon)"}
+                {academiaItem.material ? (
+                  ""
+                ) : (
+                  <span>
+                    {/* show only "soon" on smaller screens to avoid break */}(
+                    <span className="hidden sm:inline">coming </span>soon)
+                  </span>
+                )}
               </span>
             ) : academiaItem.type === "poster" ? (
               <span className="inline-flex items-center gap-1.5">
                 <ImageIcon size={18} /> Poster{" "}
-                {academiaItem.material ? "" : "(coming soon)"}
+                {academiaItem.material ? (
+                  ""
+                ) : (
+                  <span>
+                    {/* show only "soon" on smaller screens to avoid break */}(
+                    <span className="hidden sm:inline">coming </span>soon)
+                  </span>
+                )}
               </span>
             ) : null}
           </Link>

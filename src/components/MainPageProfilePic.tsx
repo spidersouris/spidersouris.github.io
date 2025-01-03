@@ -8,7 +8,7 @@ export function MainPageProfilePic() {
     <motion.div
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
-      className="flex-shrink-0"
+      className="flex-shrink-1 w-[200px] sm:w-[300px]"
     >
       <Image
         src="/images/personal_pics/brown_overcoat.jpg"

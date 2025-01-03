@@ -22,9 +22,11 @@ import {
 export function ProjectCard({
   project,
   showStatus = true,
+  showLabel = false,
 }: {
   project: Project;
   showStatus?: boolean;
+  showLabel?: boolean;
 }) {
   const StatusIcon = statusIcons[project.status];
 
@@ -51,7 +53,10 @@ export function ProjectCard({
       </div>
       <div className="p-8 pt-4 space-y-3">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-bold">{project.name}</h3>
+          <h3 className="text-xl font-bold">
+            {showLabel ? "Project: " : ""}
+            {project.name}
+          </h3>
           {showStatus && (
             <div className="group relative">
               <span

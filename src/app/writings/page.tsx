@@ -6,16 +6,13 @@ import { IconPencil } from "@tabler/icons-react";
 import { useEffect } from "react";
 import { usePostsStore } from "@/store/PostsStore";
 import type { Writing } from "@/types/post";
-import { getAllPosts } from "@/server/posts";
 
-export default async function WritingsPage() {
-  // const { posts, fetchPosts } = usePostsStore();
+export default function WritingsPage() {
+  const { posts, fetchPosts } = usePostsStore();
 
-  // useEffect(() => {
-  //   fetchPosts();
-  // }, [fetchPosts]);
-
-  const posts = await getAllPosts();
+  useEffect(() => {
+    fetchPosts();
+  }, [fetchPosts]);
 
   console.log("posts", posts);
 

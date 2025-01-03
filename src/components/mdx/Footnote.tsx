@@ -1,6 +1,6 @@
 "use client";
 import styled, { keyframes } from "styled-components";
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useEffect } from "react";
 
 interface FootnoteProps {
   idName: string | number;
@@ -26,26 +26,56 @@ const flashAnimation = keyframes`
 // https://github.com/MaggieAppleton/maggieappleton.com-V2/blob/4107d30d2f73e91b23d5e97934d1c1452c463d03/components/mdx/Footnote.js
 const Footnote = ({ idName, children, isClosed = false }: FootnoteProps) => {
   const [activeFootnote, setActiveFootnote] = useState<string | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+  const [isWideScreen, setIsWideScreen] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    const checkWidth = () => {
+      setIsWideScreen(window.innerWidth >= 1420);
+    };
+
+    checkWidth();
+    window.addEventListener("resize", checkWidth);
+
+    return () => {
+      window.removeEventListener("resize", checkWidth);
+    };
+  }, []);
 
   const handleClick = () => {
-    // scroll to the footnote
-    const element = document.getElementById(`fn-${idName}`) as HTMLElement;
-    // define y offset to not scroll too far
+    if (!isMounted) return;
+
+    const element = document.getElementById(`fn-${idName}`);
+    if (!element) return;
+
     const yOffset = -100;
     const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
     window.scrollTo({ top: y, behavior: "smooth" });
 
-    // highlight the footnote
     setActiveFootnote(`fn-${idName}`);
     setTimeout(() => setActiveFootnote(null), 1000);
   };
+
+  if (!isMounted) {
+    // return placeholder to avoid layout shift
+    return (
+      <FootnoteContainer $isClosed={isClosed}>
+        <label
+          htmlFor={`fn-${idName}`}
+          className="margin-toggle footnote-number"
+        />
+        {children}
+      </FootnoteContainer>
+    );
+  }
 
   return (
     <FootnoteContainer $isClosed={isClosed}>
       <label
         htmlFor={`fn-${idName}`}
         className="margin-toggle footnote-number"
-        onClick={window.innerWidth >= 1420 ? handleClick : undefined}
+        onClick={isWideScreen ? handleClick : undefined}
       ></label>
       <span
         className={`footnote ${
