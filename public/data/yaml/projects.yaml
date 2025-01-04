@@ -45,7 +45,7 @@
   featured: false
 
 - name: thealtres-vis
-  description: A visualization web app created as part of an internship for the [Thealtres research project](https://thealtres.pages.unistra.fr/)
+  description: A visualization web app created as part of a two-month internship for the [Thealtres research project](https://thealtres.pages.unistra.fr/)
   status: completed
   image:
     url: /images/projects/thealtres.png
