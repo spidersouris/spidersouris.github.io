@@ -7,6 +7,7 @@
   --foreground: #171717;
   --accent: #098e64;
   --accent-light: #349e7d;
+  --accent-dark: #098e64;
   --skeleton-highlight-color: #c1fbe9;
 }
 
@@ -16,7 +17,12 @@
     --foreground: #ededed;
     --accent: rgb(13, 204, 143);
     --accent-light: #09c287;
+    --accent-dark: #098e64;
     --skeleton-highlight-color: #349e7d;
+  }
+
+  a.default:hover svg {
+    color: rgba(255, 255, 255, 0.9);
   }
 }
 
@@ -36,14 +42,14 @@ body {
   }
   .hover-underline a::after {
     content: "";
-    @apply absolute left-0 bottom-0 h-[2px] w-0 bg-[var(--accent-darker)] transition-all duration-300;
+    @apply absolute left-0 bottom-0 h-[2px] w-0 bg-[var(--accent-dark)] transition-all duration-300;
   }
   .hover-underline a:hover::after {
     @apply w-full;
   }
 
   a.default:hover svg {
-    color: light-dark(rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0.9));
+    color: rgba(0, 0, 0, 0.9);
   }
 
   a.bsky:hover svg {

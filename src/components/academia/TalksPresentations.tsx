@@ -55,7 +55,7 @@ export function TalksPresentations({
                 backgroundColor:
                   highlightedId === presentation.anchorId
                     ? "rgba(167, 139, 250, 0.1)"
-                    : "transparent",
+                    : "none",
               }}
               transition={{
                 delay: index * 0.1,
