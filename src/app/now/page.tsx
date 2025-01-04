@@ -8,10 +8,11 @@ import { useNowStore } from "@/store/NowStore";
 import Link from "next/link";
 
 export default function NowPage() {
-  const { posts, currentNow, fetchPastPosts, fetchCurrentNow } = useNowStore();
+  const { pastNows, currentNow, fetchPastNows, fetchCurrentNow } =
+    useNowStore();
 
   useEffect(() => {
-    fetchPastPosts();
+    fetchPastNows();
     fetchCurrentNow();
   }, []);
 
@@ -39,23 +40,25 @@ export default function NowPage() {
         )}
         <NowContent />
       </motion.div>
-      <motion.div
-        className="mt-8 space-y-8 text-gray-600 dark:text-gray-300"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.7 }}
-      >
-        <h2>Past Nows</h2>
-        {posts.map((post) => (
-          <Link
-            key={post.slug}
-            href={`/now/${post.slug}`}
-            className="block hover:bg-gray-50 dark:hover:bg-gray-800 p-4 rounded-lg"
-          >
-            <time>{post.frontmatter.date.toLocaleDateString()}</time>
-          </Link>
-        ))}
-      </motion.div>
+      {pastNows.length > 0 && (
+        <motion.div
+          className="mt-8 space-y-8 text-gray-600 dark:text-gray-300"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7 }}
+        >
+          <h2>Past Nows</h2>
+          {pastNows.map((post) => (
+            <Link
+              key={post.slug}
+              href={`/now/${post.slug}`}
+              className="block hover:bg-gray-50 dark:hover:bg-gray-800 p-4 rounded-lg"
+            >
+              <time>{post.frontmatter.date.toLocaleDateString()}</time>
+            </Link>
+          ))}
+        </motion.div>
+      )}
     </div>
   );
 }

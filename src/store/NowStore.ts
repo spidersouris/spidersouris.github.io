@@ -3,21 +3,21 @@ import { getPastNowPosts, getCurrentNow } from "@/server/now";
 import type { NowPost } from "@/types/post";
 
 interface NowStore {
-  posts: NowPost[];
+  pastNows: NowPost[];
   currentNow: NowPost | null;
-  fetchPastPosts: () => Promise<void>;
+  fetchPastNows: () => Promise<void>;
   fetchCurrentNow: () => Promise<void>;
 }
 
 export const useNowStore = create<NowStore>((set) => ({
-  posts: [],
+  pastNows: [],
   currentNow: null,
-  fetchPastPosts: async () => {
+  fetchPastNows: async () => {
     try {
-      const posts = await getPastNowPosts();
-      set({ posts });
+      const pastNows = await getPastNowPosts();
+      set({ pastNows });
     } catch (error) {
-      console.error("Failed to fetch now posts", error);
+      console.error("Failed to fetch past nows", error);
     }
   },
   fetchCurrentNow: async () => {
