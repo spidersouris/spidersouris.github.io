@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npx tsx scripts/generatePostsJson.ts && next dev",
-    "build": "npx tsx scripts/generatePostsJson.ts && next build",
+    "dev": "cross-env NODE_ENV=development npx tsx scripts/generatePostsJson.ts && next dev -p 3888",
+    "build": "cross-env NODE_ENV=production npx tsx scripts/generatePostsJson.ts && next build",
     "start": "npx serve@latest out",
-    "deploy": "npx tsx scripts/generatePostsJson.ts && next build && gh-pages -d out",
+    "deploy": "cross-env NODE_ENV=production npx tsx scripts/generatePostsJson.ts && next build && gh-pages -d out",
     "lint": "next lint"
   },
   "dependencies": {

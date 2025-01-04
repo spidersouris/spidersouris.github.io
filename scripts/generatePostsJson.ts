@@ -10,6 +10,7 @@ const POSTS_CONTENT_DIR = path.join(
   "content"
 );
 const OUTPUT_FILE = path.join(POSTS_DIR, "posts.json");
+const ENV = process.env.NODE_ENV; // set by cross-env in package.json
 
 function generatePostsJson() {
   try {
@@ -19,12 +20,15 @@ function generatePostsJson() {
     }
 
     // get all .mdx files in the directory
-    const files = fs
-      .readdirSync(POSTS_CONTENT_DIR)
-      .filter((file) => file.endsWith(".mdx"));
+    const mdxFiles = fs.readdirSync(POSTS_CONTENT_DIR).filter(
+      (file) =>
+        file.endsWith(".mdx") &&
+        // ignore files starting with _ in prod
+        (ENV === "production" ? !file.startsWith("_") : true)
+    );
 
     // write to posts.json
-    fs.writeFileSync(OUTPUT_FILE, JSON.stringify(files, null, 2));
+    fs.writeFileSync(OUTPUT_FILE, JSON.stringify(mdxFiles, null, 2));
     console.log(`Successfully generated ${OUTPUT_FILE}`);
   } catch (error) {
     console.error("Error generating files.json:", error);
