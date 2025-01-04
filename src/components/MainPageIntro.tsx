@@ -30,7 +30,7 @@ export function MainPageIntro() {
           className={"inline-block relative bottom-0.5"}
         />{" "}
         PhD Candidate in Natural Language Processing at the{" "}
-        <LinkUnderline href={"https://unistra.fr/"} target="_blank">
+        <LinkUnderline href={"https://en.unistra.fr/"} target="_blank">
           University of Strasbourg, France
         </LinkUnderline>
       </p>
