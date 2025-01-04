@@ -21,11 +21,11 @@ import {
 
 export function ProjectCard({
   project,
-  showStatus = true,
+  isFeatured = false,
   showLabel = false,
 }: {
   project: Project;
-  showStatus?: boolean;
+  isFeatured?: boolean;
   showLabel?: boolean;
 }) {
   const StatusIcon = statusIcons[project.status];
@@ -36,7 +36,17 @@ export function ProjectCard({
       animate={{ opacity: 1, y: 0 }}
       className="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
     >
-      <div className={`relative mt-5 h-36`}>
+      <div
+        className={`relative h-36 dark:mt-5 dark:bg-inherit ${
+          project.image.lightBg ? "bg-gray-900" : ""
+        }
+        
+        ${isFeatured ? "mt-5" : "mt-0"}`}
+        // When project is featured,
+        // set margin-top to 5 in light mode as well
+        // to align with margin of a featured AcademiaItem.
+        // Otherwise, set margin-top to 0 in light mode, because creates ugly background separation effect otherwise (for instance on "Projects" page).
+      >
         <Link
           href={project.links.demo ? project.links.demo : project.links.github!}
           target="_blank"
@@ -46,8 +56,7 @@ export function ProjectCard({
             src={project.image.url}
             alt={project.name}
             fill
-            className={`object-contain opacity-90 hover:opacity-100`}
-            style={{ transform: `scale(${project.image.scale})` }}
+            className={`object-contain opacity-90 hover:opacity-100 ${project.image.className}`}
           />
         </Link>
       </div>
@@ -57,7 +66,8 @@ export function ProjectCard({
             {showLabel ? "Project: " : ""}
             {project.name}
           </h3>
-          {showStatus && (
+          {/* don't show status on featured card */}
+          {!isFeatured && (
             <div className="group relative">
               <span
                 className={`flex px-2 py-1 rounded-full text-sm ${

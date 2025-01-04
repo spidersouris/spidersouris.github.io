@@ -3,16 +3,20 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
+  --background: #fafafa;
   --foreground: #171717;
-  --accent: rgb(13, 204, 143);
-  --accent-darker: #098e64;
+  --accent: #098e64;
+  --accent-light: #349e7d;
+  --skeleton-highlight-color: #c1fbe9;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --accent: rgb(13, 204, 143);
+    --accent-light: #09c287;
+    --skeleton-highlight-color: #349e7d;
   }
 }
 
@@ -39,7 +43,7 @@ body {
   }
 
   a.default:hover svg {
-    color: rgba(255, 255, 255, 0.9);
+    color: light-dark(rgba(0, 0, 0, 0.9), rgba(255, 255, 255, 0.9));
   }
 
   a.bsky:hover svg {
@@ -115,7 +119,6 @@ code > [data-line]::before {
 .skeleton-container {
   height: 100%;
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr 1fr));
+  display: flex;
   gap: 1rem;
 }

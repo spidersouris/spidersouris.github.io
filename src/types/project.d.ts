@@ -12,7 +12,8 @@ export interface ProjectLinks {
 
 export interface ImageProps {
   url: string;
-  scale: number;
+  className: string;
+  lightBg: boolean;
 }
 
 export interface Project {
@@ -24,6 +25,5 @@ export interface Project {
   techs: string[];
   links: ProjectLinks;
   githubStats: ProjectGithubStats;
-  imageSize: string | number;
   featured: boolean;
 }

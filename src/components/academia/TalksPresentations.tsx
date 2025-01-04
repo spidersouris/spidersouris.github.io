@@ -50,7 +50,7 @@ export function TalksPresentations({
                 x: 0,
                 boxShadow:
                   highlightedId === presentation.anchorId
-                    ? "0 0 20px rgba(167, 139, 250, 0.5)"
+                    ? "0 0 20px 8px rgba(167, 139, 250, 0.5)"
                     : "none",
                 backgroundColor:
                   highlightedId === presentation.anchorId
@@ -69,10 +69,7 @@ export function TalksPresentations({
               }`}
             >
               <div className="flex items-start gap-4">
-                <PresentationIcon
-                  size={24}
-                  className="flex-shrink-0 mt-1 text-accent"
-                />
+                <PresentationIcon size={24} className="flex-shrink-0 mt-1" />
                 <div className="space-y-2">
                   <h3 className="font-bold text-lg">{presentation.title}</h3>
                   {presentation.english && (
@@ -124,7 +121,7 @@ export function TalksPresentations({
                       href={presentation.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-accent hover:underline inline-flex items-center gap-1"
+                      className="hover:underline inline-flex items-center gap-1"
                     >
                       <IconExternalLink size={18} />
                       Announcement
@@ -139,7 +136,7 @@ export function TalksPresentations({
                       tabIndex={presentation.material ? -1 : undefined}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-accent hover:underline inline-flex items-center gap-1"
+                      className="hover:underline inline-flex items-center gap-1"
                     >
                       {presentation.type === "talk" ? (
                         <span className="inline-flex items-center gap-1.5">

@@ -82,7 +82,7 @@ export function AcademiaCard({ academiaItem }: { academiaItem: AcademiaItem }) {
             href={academiaItem.website}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-accent hover:underline inline-flex items-center gap-1"
+            className="hover:underline inline-flex items-center gap-1"
           >
             <IconExternalLink size={18} />
             Announcement
@@ -97,7 +97,7 @@ export function AcademiaCard({ academiaItem }: { academiaItem: AcademiaItem }) {
             tabIndex={academiaItem.material ? -1 : undefined}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-accent hover:underline inline-flex items-center gap-1"
+            className="hover:underline inline-flex items-center gap-1"
           >
             {academiaItem.type === "talk" ? (
               <span className="inline-flex items-center gap-1.5">

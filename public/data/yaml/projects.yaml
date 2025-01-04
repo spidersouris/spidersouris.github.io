@@ -3,7 +3,8 @@
   status: dormant
   image:
     url: /images/projects/termic.png
-    scale: 1
+    className: "!inset-y-1.5"
+    lightBg: true
   tags: [web app, terminology, localization]
   techs: [JQuery, Flask, Python, PostgreSQL]
   links:
@@ -18,7 +19,8 @@
   status: active
   image:
     url: /images/projects/touying-unistra-pristine.webp
-    scale: 1
+    className: ""
+    lightBg: false
   tags: [presentation, slides, academia]
   techs: [Typst, Touying]
   links:
@@ -32,7 +34,8 @@
   status: completed
   image:
     url: /images/projects/tgpin.png
-    scale: 0.8
+    className: "scale-0.8"
+    lightBg: true
   tags: [bookmarking]
   techs: [Python]
   links:
@@ -46,7 +49,8 @@
   status: completed
   image:
     url: /images/projects/thealtres.png
-    scale: 1
+    className: ""
+    lightBg: false
   tags: [web app, visualization, academia]
   techs: [TypeScript, D3.js, Leaflet, Hugo]
   links:

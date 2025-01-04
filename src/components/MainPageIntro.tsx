@@ -53,10 +53,13 @@ export function MainPageIntro() {
           Dive into my written pieces
         </LinkUnderline>
         , or{" "}
-        <LinkUnderline href="/about">
-          read more about my personal journey
-        </LinkUnderline>
-        .
+        {/* prevent full stop from starting on new line on some screen sizes */}
+        <span className="whitespace-nowrap">
+          <LinkUnderline href="/about">
+            read more about my personal journey
+          </LinkUnderline>
+          .
+        </span>
       </p>
     </motion.div>
   );

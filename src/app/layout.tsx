@@ -33,7 +33,10 @@ export default function RootLayout({
         className={`${libreBaskervilleFont.variable} max-w-4xl mx-auto px-6 py-12 md:px-8`}
       >
         <Navigation />
-        <SkeletonTheme baseColor="#0a0a0a" highlightColor="#1f2937">
+        <SkeletonTheme
+          baseColor="var(--background)"
+          highlightColor="var(--skeleton-highlight-color)"
+        >
           <main className="mt-16">{children}</main>
         </SkeletonTheme>
         <Footer />

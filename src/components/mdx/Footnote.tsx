@@ -14,7 +14,7 @@ interface FootnoteContainerProps {
 
 const flashAnimation = keyframes`
   0% {
-    background-color: var(--accent-darker);
+    background-color: var(--accent);
   }
   100% {
     background-color: rgba(255, 213, 219, 0.1);

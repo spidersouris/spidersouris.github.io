@@ -37,7 +37,7 @@ const Navigation = () => {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-2xl font-bold mb-4 sm:mb-0"
+        className="text-2xl font-bold mb-4 sm:mb-0 hover:text-[var(--accent-light)] transition-colors transition-duration-200"
       >
         <Link key={"/"} href={"/"}>
           Enzo Doyen
@@ -58,7 +58,7 @@ const Navigation = () => {
                 href={mainLink.href}
                 className={`text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors ${
                   isActive
-                    ? "text-white dark:text-white underline underline-offset-4"
+                    ? "text-gray-900 dark:text-white underline underline-offset-4"
                     : ""
                 }`}
               >
@@ -105,7 +105,7 @@ const Navigation = () => {
                         onClick={() => setIsMenuOpen(false)}
                         className={`block px-4 py-2 text-sm hover:bg-accent/10 transition-colors ${
                           isActive
-                            ? "text-accent underline underline-offset-4"
+                            ? "underline underline-offset-4"
                             : "text-gray-600 dark:text-gray-400"
                         }`}
                       >

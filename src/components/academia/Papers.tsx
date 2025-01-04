@@ -33,7 +33,7 @@ export function Papers({ papers }: PapersProps) {
                 href={`https://doi.org/${paper.doi}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent hover:underline inline-flex items-center gap-1"
+                className="hover:underline inline-flex items-center gap-1"
               >
                 <IconExternalLink size={16} />
                 DOI

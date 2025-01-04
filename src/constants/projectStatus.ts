@@ -4,7 +4,7 @@ import { IconBolt, IconZzz, IconCircleDashedCheck } from "@tabler/icons-react";
 
 export const statusColors = {
   active: "bg-violet-300 text-gray-700",
-  dormant: "bg-gray-100 text-gray-800",
+  dormant: "bg-gray-400 text-gray-900 dark:bg-gray-100 dark:text-gray-800",
   completed: "bg-green-200 text-green-800",
 };
 

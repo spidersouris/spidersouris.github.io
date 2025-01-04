@@ -40,11 +40,11 @@ export default function ProjectsPage() {
             <button
               key={status}
               onClick={() => toggleFilter(status as ProjectStatus)}
-              className={`flex items-center gap-3 p-4 rounded-lg bg-slate-700
+              className={`flex items-center gap-3 p-4 rounded-lg bg-slate-100 dark:bg-slate-700
                 ${
                   activeFilters.includes(status as ProjectStatus)
-                    ? "bg-zinc-900"
-                    : "hover:bg-slate-800 transition-colors ease-in-out"
+                    ? "bg-slate-300 dark:bg-zinc-900"
+                    : "hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors ease-in-out"
                 }`}
             >
               <span

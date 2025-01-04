@@ -30,9 +30,12 @@ export default function Home() {
           className="group relative inline-flex items-center gap-2 px-6 py-3
             rounded-lg font-medium
             text-gray-600 dark:text-gray-300
-            border-2 border-accent/20
+            border-2
+            border-gray-600
+            dark:border-accent/20
             transition-colors duration-300
-            hover:bg-gray-800 hover:text-white"
+            hover:bg-gray-800
+            hover:text-white"
         >
           <IconFileText size={20} />
           View Resume

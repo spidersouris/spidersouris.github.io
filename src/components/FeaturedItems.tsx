@@ -42,7 +42,7 @@ export function FeaturedItems() {
           <ProjectCard
             key={project.name}
             project={project}
-            showStatus={false}
+            isFeatured={true}
             showLabel={true}
           />
         ))}
