@@ -87,9 +87,7 @@ export async function getAllPosts(): Promise<Writing[]> {
       },
     };
     const filesResponse = await fetch(
-      //"/data/posts/posts.json"
       `${process.env.NEXT_PUBLIC_BASE_URL}/data/posts/posts.json`,
-      //`http://localhost:3000/data/posts/posts.json`
       fetchOptions
     );
     if (!filesResponse.ok) {

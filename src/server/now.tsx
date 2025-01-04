@@ -39,9 +39,7 @@ export async function getPastNowPosts(): Promise<NowPost[]> {
       },
     };
     const pastFilesResponse = await fetch(
-      //"/data/now/pastNows/pastNows.json"
       `${process.env.NEXT_PUBLIC_BASE_URL}/data/now/pastNows/pastNows.json`,
-      //`http://127.0.0.1:3000/data/now/pastNows/pastNows.json`
       fetchOptions
     );
     if (!pastFilesResponse.ok) {
