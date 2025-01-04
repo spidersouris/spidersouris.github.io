@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 
 import { PageIntro } from "@/components/PageIntro";
-import AboutContent from "@/content/about.mdx";
+import AboutContent from "/public/data/about.mdx";
 import { IconUser } from "@tabler/icons-react";
 
 export default function AboutPage() {
