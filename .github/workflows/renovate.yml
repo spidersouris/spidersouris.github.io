@@ -11,6 +11,9 @@ concurrency:
 jobs:
   renovate:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: renovatebot/github-action@v41.0.7
         env:
