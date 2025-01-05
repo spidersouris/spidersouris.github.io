@@ -22,7 +22,7 @@ export function PageIntro({ title, icon: Icon, blurb }: PageIntroProps) {
         <h1 className="text-4xl font-bold m-0">{title}</h1>
       </div>
       {blurb && (
-        <p className="mt-4 text-gray-600 dark:text-gray-300">{blurb}</p>
+        <p className="mt-4 text-gray-800 dark:text-gray-300">{blurb}</p>
       )}
     </motion.div>
   );

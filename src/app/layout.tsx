@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 
 import { SkeletonTheme } from "react-loading-skeleton";
 
+import { ThemeProvider } from "@/utils/themeContext";
 import "./globals.css";
 
 const libreBaskervilleFont = localFont({
@@ -32,14 +33,16 @@ export default function RootLayout({
       <body
         className={`${libreBaskervilleFont.variable} max-w-4xl mx-auto px-6 py-12 md:px-8`}
       >
-        <Navigation />
-        <SkeletonTheme
-          baseColor="var(--background)"
-          highlightColor="var(--skeleton-highlight-color)"
-        >
-          <main className="mt-16">{children}</main>
-        </SkeletonTheme>
-        <Footer />
+        <ThemeProvider>
+          <Navigation />
+          <SkeletonTheme
+            baseColor="var(--background)"
+            highlightColor="var(--skeleton-highlight-color)"
+          >
+            <main className="mt-16">{children}</main>
+          </SkeletonTheme>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

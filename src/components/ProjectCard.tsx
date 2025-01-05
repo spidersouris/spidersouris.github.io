@@ -93,7 +93,7 @@ export function ProjectCard({
         </div>
         <div className="pt-2 min-h-20">
           <span
-            className="text-gray-600 dark:text-gray-300 hover-underline"
+            className="text-gray-800 dark:text-gray-300 hover-underline"
             dangerouslySetInnerHTML={{ __html: project.description }}
           />
         </div>

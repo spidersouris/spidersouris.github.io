@@ -25,7 +25,7 @@ export default function NowPage() {
       />
 
       <motion.div
-        className="space-y-8 text-gray-600 dark:text-gray-300"
+        className="space-y-8 text-gray-800 dark:text-gray-300"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.7 }}
@@ -42,7 +42,7 @@ export default function NowPage() {
       </motion.div>
       {pastNows.length > 0 && (
         <motion.div
-          className="mt-8 space-y-8 text-gray-600 dark:text-gray-300"
+          className="mt-8 space-y-8 text-gray-800 dark:text-gray-300"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}

@@ -73,11 +73,11 @@ export function TalksPresentations({
                 <div className="space-y-2">
                   <h3 className="font-bold text-lg">{presentation.title}</h3>
                   {presentation.english && (
-                    <span className="text-gray-600 dark:text-gray-400">
+                    <span className="text-gray-800 dark:text-gray-400">
                       ({presentation.english})
                     </span>
                   )}
-                  <div className="text-gray-600 dark:text-gray-400">
+                  <div className="text-gray-800 dark:text-gray-400">
                     <p>
                       <UserIcon
                         size={18}

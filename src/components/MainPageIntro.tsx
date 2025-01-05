@@ -24,7 +24,7 @@ export function MainPageIntro() {
           Enzo
         </RoughNotation>
       </h1>
-      <p className="text-xl text-gray-600 dark:text-gray-300">
+      <p className="text-xl text-gray-800 dark:text-gray-300">
         <GraduationCap
           size={28}
           className={"inline-block relative bottom-0.5"}
@@ -34,7 +34,7 @@ export function MainPageIntro() {
           University of Strasbourg, France
         </LinkUnderline>
       </p>
-      <p className="text-gray-600 dark:text-gray-300">
+      <p className="text-gray-800 dark:text-gray-300">
         My research focuses on gender bias mitigation for French.
         <br />
         <LinkUnderline href="/academia">
