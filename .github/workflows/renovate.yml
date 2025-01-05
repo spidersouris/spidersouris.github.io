@@ -16,4 +16,4 @@ jobs:
         env:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
         with:
-          token: ${{ secrets.ACTIONS_GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
