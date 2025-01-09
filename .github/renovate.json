@@ -1,5 +1,9 @@
 {
-  "extends": ["config:recommended", ":semanticCommitTypeAll(chore)"],
+  "extends": [
+    "config:recommended",
+    ":semanticCommits",
+    ":semanticCommitTypeAll(chore)"
+  ],
   "dependencyDashboard": false,
   "stabilityDays": 7,
   "prHourlyLimit": 0,
