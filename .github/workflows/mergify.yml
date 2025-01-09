@@ -1,0 +1,25 @@
+pull_request_rules:
+  - name: Auto-approve upgrades
+    conditions:
+      - -label=major-upgrade
+      - or:
+          - author=dependabot[bot]
+          - and:
+              - author=renovate[bot]
+              - or:
+                  - title~=update .* digest to \w+
+                  - title~=update .* monorepo
+                  - title~=update dependency
+                  - title~=update .* action to \w+
+                  - title~=pin .* action to \w+
+    actions:
+      review:
+        type: APPROVE
+        message: Automatically approving non-major dependency upgrade
+  - name: Auto-merge upgrades
+    conditions:
+      - check-success=build
+      - check-success=deploy
+    actions:
+      merge:
+        method: squash

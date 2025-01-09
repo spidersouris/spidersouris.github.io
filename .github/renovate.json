@@ -1,6 +1,7 @@
 {
   "extends": ["config:recommended", ":semanticCommitTypeAll(chore)"],
   "dependencyDashboard": false,
+  "stabilityDays": 7,
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
   "packageRules": [
