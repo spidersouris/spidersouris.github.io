@@ -5,7 +5,6 @@
     ":semanticCommitTypeAll(chore)"
   ],
   "dependencyDashboard": false,
-  "stabilityDays": 7,
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
   "packageRules": [
@@ -16,8 +15,9 @@
     },
     {
       "matchUpdateTypes": ["major"],
-      "automerge": false,
-      "labels": ["dependencies-major"]
+      "automerge": true,
+      "labels": ["dependencies-major"],
+      "minimumReleaseAge": 10
     }
   ]
 }
