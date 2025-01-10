@@ -17,7 +17,7 @@
       "matchUpdateTypes": ["major"],
       "automerge": true,
       "labels": ["dependencies-major"],
-      "minimumReleaseAge": 10
+      "minimumReleaseAge": "10 days"
     }
   ]
 }
