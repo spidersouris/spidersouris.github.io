@@ -5,7 +5,7 @@ import { IconBrandGithub } from "@tabler/icons-react";
 
 export function Footer() {
   return (
-    <footer className="flex justify-center text-center text-gray-600 dark:text-gray-300 mt-16 border-t border-gray-200 dark:border-gray-800 pt-8">
+    <footer className="flex justify-center text-center text-gray-800 dark:text-gray-300 mt-16 border-t border-gray-200 dark:border-gray-800 pt-8">
       <p>&copy; {new Date().getFullYear()} Enzo Doyen | </p>
       <CustomIcon
         icon={IconBrandGithub}
