@@ -38,7 +38,7 @@ export function CustomIcon({
             <Icon
               size={28}
               className="transition-colors duration-200
-                text-gray-600 dark:text-gray-400"
+                text-gray-800 dark:text-gray-400"
             />
           </motion.div>
           {label && <HoverLabel label={label} labelOffset={labelOffset} />}
@@ -53,7 +53,7 @@ export function CustomIcon({
             <Icon
               size={28}
               className="transition-colors duration-200
-                text-gray-600 dark:text-gray-400"
+                text-gray-800 dark:text-gray-400"
             />
           </motion.div>
           {label && <HoverLabel label={label} labelOffset={labelOffset} />}

@@ -29,7 +29,7 @@ export default function Home() {
           rel="noopener noreferrer"
           className="group relative inline-flex items-center gap-2 px-6 py-3
             rounded-lg font-medium
-            text-gray-600 dark:text-gray-300
+            text-gray-800 dark:text-gray-300
             border-2
             border-gray-600
             dark:border-accent/20

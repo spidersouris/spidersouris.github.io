@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { IconDots } from "@tabler/icons-react";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 const Navigation = () => {
   const pathname = usePathname();
@@ -56,7 +57,7 @@ const Navigation = () => {
               <Link
                 key={mainLink.href}
                 href={mainLink.href}
-                className={`text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors ${
+                className={`text-gray-800 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors ${
                   isActive
                     ? "text-gray-900 dark:text-white underline underline-offset-4"
                     : ""
@@ -106,13 +107,14 @@ const Navigation = () => {
                         className={`block px-4 py-2 text-sm hover:bg-accent/10 transition-colors ${
                           isActive
                             ? "underline underline-offset-4"
-                            : "text-gray-600 dark:text-gray-400"
+                            : "text-gray-800 dark:text-gray-400"
                         }`}
                       >
                         {link.label}
                       </Link>
                     );
                   })}
+                  <ThemeSwitcher />
                 </motion.div>
               </>
             )}

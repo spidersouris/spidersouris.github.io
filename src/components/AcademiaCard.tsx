@@ -59,11 +59,11 @@ export function AcademiaCard({ academiaItem }: { academiaItem: AcademiaItem }) {
           {toTitle(academiaItem.type)}: {academiaItem.title}
         </h3>
         {academiaItem.english && (
-          <span className="text-gray-600 dark:text-gray-300">
+          <span className="text-gray-800 dark:text-gray-300">
             ({academiaItem.english})
           </span>
         )}
-        <div className="text-gray-600 dark:text-gray-300">
+        <div className="text-gray-800 dark:text-gray-300">
           <p>
             <Lectern size={18} className="inline relative bottom-0.5" />{" "}
             {academiaItem.eventName}
