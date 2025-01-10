@@ -56,7 +56,7 @@ export default function ProjectsPage() {
               </span>
               <div className="text-left">
                 <h3 className="font-medium capitalize">{status}</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300 whitespace-pre-line">
+                <p className="text-sm text-gray-800 dark:text-gray-300 whitespace-pre-line">
                   {statusFullDesc[status as ProjectStatus]}
                 </p>
               </div>

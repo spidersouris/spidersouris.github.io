@@ -14,13 +14,6 @@ const withMDX = createMDX({
 });
 
 const nextConfig: NextConfig = {
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.yaml$/,
-      use: "yaml-loader",
-    });
-    return config;
-  },
   output: "export",
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   env: {

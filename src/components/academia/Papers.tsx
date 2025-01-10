@@ -23,7 +23,7 @@ export function Papers({ papers }: PapersProps) {
             className="space-y-2"
           >
             <h3 className="font-bold text-lg">{paper.title}</h3>
-            <p className="text-gray-600 dark:text-gray-400">{paper.authors}</p>
+            <p className="text-gray-800 dark:text-gray-400">{paper.authors}</p>
             <p>
               <span className="font-medium">{paper.eventName}</span> (
               {paper.date})
@@ -38,7 +38,7 @@ export function Papers({ papers }: PapersProps) {
                 <IconExternalLink size={16} />
                 DOI
               </Link>
-              <span className="text-gray-600 dark:text-gray-400">
+              <span className="text-gray-800 dark:text-gray-400">
                 Citations: {paper.citations}
               </span>
             </div>

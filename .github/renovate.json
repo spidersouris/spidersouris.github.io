@@ -1,12 +1,23 @@
 {
-  "extends": ["config:recommended"],
+  "extends": [
+    "config:recommended",
+    ":semanticCommits",
+    ":semanticCommitTypeAll(chore)"
+  ],
   "dependencyDashboard": false,
+  "stabilityDays": 7,
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": true
+      "automerge": true,
+      "labels": ["dependencies-minor"]
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "labels": ["dependencies-major"]
     }
   ]
 }
