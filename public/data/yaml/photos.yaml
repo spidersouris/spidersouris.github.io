@@ -1,7 +1,7 @@
 - src: "/photographs/berlin_planterwald/edited.jpg"
   og: "/photographs/berlin_planterwald/original.jpg"
-  width: 1080
-  height: 780
+  width: 1200
+  height: 900
   alt: "Train"
   description: "Train"
   location: "Plänterwald railway station, Berlin, Germany"
@@ -11,3 +11,31 @@
     aperture: "f/1.9"
     shutterSpeed: "1/100"
     iso: "898"
+
+- src: "/photographs/berlin_treptower_park/edited.jpg"
+  og: "/photographs/berlin_treptower_park/original.jpg"
+  width: 1200
+  height: 900
+  alt: "Snowfield"
+  description: "Snowfield"
+  location: "Treptower Park, Berlin, Germany"
+  metadata:
+    camera: "Google Pixel 6 Pro"
+    lens: "back camera 6.81mm f/1.85"
+    aperture: "f/1.9"
+    shutterSpeed: "1/103"
+    iso: "69"
+
+- src: "/photographs/berlin_bundestag/edited.jpeg"
+  og: "/photographs/berlin_bundestag/original.jpg"
+  width: 1200
+  height: 900
+  alt: "Chimney Light"
+  description: "Chimney Light"
+  location: "Paul-Löbe-Haus, Berlin, Germany"
+  metadata:
+    camera: "Google Pixel 6 Pro"
+    lens: "back camera 6.81mm f/1.85"
+    aperture: "f/1.9"
+    shutterSpeed: "1/39"
+    iso: "753"
