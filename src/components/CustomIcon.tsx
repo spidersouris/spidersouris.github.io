@@ -32,7 +32,7 @@ export function CustomIcon({
         >
           <motion.div
             whileHover={{ y: -4 }}
-            className={`relative rounded-lg pr-1
+            className={`relative rounded-lg
               transition-colors duration-200 ${containerClassName}`}
           >
             <Icon
@@ -47,7 +47,7 @@ export function CustomIcon({
         <div className={`group relative ${hoverColorClass}`}>
           <motion.div
             whileHover={{ y: -4 }}
-            className={`relative pr-1 rounded-lg 
+            className={`relative rounded-lg 
               transition-colors duration-200 ${containerClassName}`}
           >
             <Icon

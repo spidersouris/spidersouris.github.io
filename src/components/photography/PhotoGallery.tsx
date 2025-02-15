@@ -9,6 +9,7 @@ import Download from "yet-another-react-lightbox/plugins/download";
 
 import Image from "next/image";
 import {
+  ColumnsPhotoAlbum,
   Photo,
   RenderImageContext,
   RenderImageProps,
@@ -19,6 +20,7 @@ import {
   ReactCompareSliderImage,
 } from "react-compare-slider";
 import "react-photo-album/rows.css";
+import "react-photo-album/columns.css";
 
 import {
   IconCamera,
@@ -68,7 +70,11 @@ const CustomSlide = ({ slide }: RenderSlideProps<SlideImage>) => {
   const [labelOpacity, setLabelOpacity] = useState(1);
 
   return (
-    <div className="relative w-full h-full">
+    <div
+      className="relative w-full h-full"
+      // disable yarn lightbox swipe events to allow comparison slider
+      onPointerDown={(e) => e.stopPropagation()}
+    >
       <div
         className="absolute lg:top-4 top-8 left-4 bg-black/50 px-3 py-1 rounded-full text-white text-sm z-10 transition-opacity duration-200"
         style={{ opacity: labelOpacity }}
@@ -160,6 +166,9 @@ function renderNextImage(
         width: "100%",
         position: "relative",
         aspectRatio: `${width} / ${height}`,
+        // fixes scrolling on mobile selecting the image
+        touchAction: "pan-y",
+        userSelect: "none",
       }}
     >
       <Image
@@ -173,9 +182,12 @@ function renderNextImage(
         className="photography-image"
         quality={100}
         unoptimized={true}
+        // disable drag
+        draggable={false}
+        style={{ userSelect: "none" }}
       />
       {(photo as ExtendedPhoto).og && (
-        <div className="absolute top-2 right-2 text-white px-2 py-1 rounded text-sm">
+        <div className="absolute top-2 right-2 text-white px-2 py-1 rounded text-sm bg-black bg-opacity-50">
           <CustomIcon
             icon={IconArrowAutofitWidth}
             label={`Comparison\navailable`}
@@ -195,10 +207,11 @@ export default function PhotoGallery({
 
   return (
     <>
-      <RowsPhotoAlbum
+      <ColumnsPhotoAlbum
         photos={initialPhotos}
         render={{ image: renderNextImage }}
-        defaultContainerWidth={1200}
+        columns={1}
+        defaultContainerWidth={1600}
         onClick={({ event, photo }) => {
           // let a link open in a new tab / new window / download
           if (event.shiftKey || event.altKey || event.metaKey) return;
@@ -211,13 +224,13 @@ export default function PhotoGallery({
         }}
         // describe photo album size in different viewports
         sizes={{
-          size: "1168px",
+          size: "100vw",
           sizes: [
-            { viewport: "(max-width: 1200px)", size: "calc(100vw - 32px)" },
+            { viewport: "(max-width: 1920px)", size: "calc(100vw - 32px)" },
           ],
         }}
         // re-calculate the layout only at specific breakpoints
-        breakpoints={[220, 360, 480, 600, 900, 1200]}
+        breakpoints={[220, 360, 480, 600, 900, 1200, 1800]}
       />
 
       <Lightbox

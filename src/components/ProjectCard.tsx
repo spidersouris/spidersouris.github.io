@@ -117,6 +117,7 @@ export function ProjectCard({
                 href={project.links.github}
                 label={"GitHub Repo"}
                 labelOffset={2}
+                containerClassName="pr-2"
               />
             )}
             {project.githubStats.stars !== undefined &&
