@@ -1,10 +1,10 @@
-import { getPostBySlug } from "@/server/posts";
+import { getPostBySlug } from "@/content/posts";
 import { notFound } from "next/navigation";
 
 import { Clock, CalendarDot, Tag } from "@phosphor-icons/react/dist/ssr";
 
 import { Writing } from "@/types/post";
-import { getAllPosts } from "@/server/posts";
+import { getAllPosts } from "@/content/posts";
 
 type Params = Promise<{ slug: string }>;
 

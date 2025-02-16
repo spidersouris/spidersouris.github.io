@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { Presentation, Paper, Teaching, AcademiaItem } from "../types/academia";
-import { getPresentations, getPapers, getTeaching } from "../server/academia";
+import { getPresentations, getPapers, getTeaching } from "../content/academia";
 
 interface AcademiaStore {
   presentations: Presentation[];

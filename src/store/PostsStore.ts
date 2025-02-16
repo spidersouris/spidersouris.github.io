@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { getAllPosts } from "@/server/posts";
+import { getAllPosts } from "@/content/posts";
 import type { Post } from "@/types/post";
 
 interface PostsStore {

@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { getPhotos } from "@/server/photos";
+import { getPhotos } from "@/content/photos";
 import { Photo } from "react-photo-album";
 
 interface PhotographyStore {

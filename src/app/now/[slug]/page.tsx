@@ -1,4 +1,4 @@
-import { getPastNowPosts } from "@/server/now";
+import { getPastNowPosts } from "@/content/now";
 import type { NowPost } from "@/types/post";
 import { notFound } from "next/navigation";
 

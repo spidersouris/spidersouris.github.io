@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { Project } from "../types/project";
-import { getProjects } from "../server/projects";
+import { getProjects } from "../content/projects";
 import { ProjectStatus } from "../types/project";
 
 interface ProjectStore {

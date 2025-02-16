@@ -13,7 +13,6 @@ import {
   Photo,
   RenderImageContext,
   RenderImageProps,
-  RowsPhotoAlbum,
 } from "react-photo-album";
 import {
   ReactCompareSlider,

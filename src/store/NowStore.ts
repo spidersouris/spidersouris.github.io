@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { getPastNowPosts, getCurrentNow } from "@/server/now";
+import { getPastNowPosts, getCurrentNow } from "@/content/now";
 import type { NowPost } from "@/types/post";
 
 interface NowStore {
