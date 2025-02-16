@@ -35,6 +35,6 @@ export const socialLinks = [
     icon: IconScholar,
     href: "https://scholar.google.com/citations?user=pGk01S8AAAAJ",
     label: "Google Scholar",
-    isLocalSvg: true,
+    hoverColorClass: "default-local",
   },
 ];

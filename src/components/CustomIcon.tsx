@@ -12,7 +12,6 @@ interface CustomIconProps {
   hoverColorClass?: string;
   containerClassName?: string;
   size?: number;
-  isLocalSvg?: boolean;
 }
 
 export function CustomIcon({
@@ -23,14 +22,13 @@ export function CustomIcon({
   hoverColorClass = "default",
   containerClassName = "",
   size = 28,
-  isLocalSvg = false,
 }: CustomIconProps) {
   const IconWrapper = () => (
     <IconComponent
       width={size}
       height={size}
       className={`transition-colors duration-200 ${
-        isLocalSvg
+        hoverColorClass == "default-local"
           ? "fill-gray-800 dark:fill-gray-400" // fill for local SVGs
           : "text-gray-800 dark:text-gray-400" // color for Tabler icons
       }`}
