@@ -25,6 +25,14 @@ const nextConfig: NextConfig = {
     loader: "custom",
     loaderFile: "src/lib/imageLoader.ts",
   },
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"],
+    });
+
+    return config;
+  },
 };
 
 module.exports = withMDX(nextConfig);

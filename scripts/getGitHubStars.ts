@@ -2,7 +2,7 @@ import { exec } from "child_process";
 import fs from "fs";
 import yaml from "js-yaml";
 
-const PROJECTS_PATH = "../public/data/yaml/projects.yaml";
+const PROJECTS_PATH = "/public/data/yaml/projects.yaml";
 
 const getGitHubStars = (repo: string): Promise<number> => {
   return new Promise((resolve, reject) => {

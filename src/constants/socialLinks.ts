@@ -6,6 +6,7 @@ import {
   IconBrandLinkedin,
   IconMail,
 } from "@tabler/icons-react";
+import IconScholar from "../../public/icons/google-scholar.svg";
 
 export const socialLinks = [
   {
@@ -29,5 +30,11 @@ export const socialLinks = [
     href: "https://bsky.app/profile/edoyen.com",
     label: "Bluesky",
     hoverColorClass: "bsky",
+  },
+  {
+    icon: IconScholar,
+    href: "https://scholar.google.com/citations?user=pGk01S8AAAAJ",
+    label: "Google Scholar",
+    isLocalSvg: true,
   },
 ];

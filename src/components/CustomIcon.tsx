@@ -1,64 +1,70 @@
 import { Icon } from "@tabler/icons-react";
+import { ComponentType, SVGProps } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { HoverLabel } from "./HoverLabel";
 
 interface CustomIconProps {
-  icon: Icon;
+  icon: Icon | ComponentType<SVGProps<SVGSVGElement>>;
   href?: string;
   label?: string;
   labelOffset?: number;
   hoverColorClass?: string;
   containerClassName?: string;
+  size?: number;
+  isLocalSvg?: boolean;
 }
 
 export function CustomIcon({
-  icon: Icon,
+  icon: IconComponent,
   href,
   label,
   labelOffset = 4,
   hoverColorClass = "default",
   containerClassName = "",
+  size = 28,
+  isLocalSvg = false,
 }: CustomIconProps) {
+  const IconWrapper = () => (
+    <IconComponent
+      width={size}
+      height={size}
+      className={`transition-colors duration-200 ${
+        isLocalSvg
+          ? "fill-gray-800 dark:fill-gray-400" // fill for local SVGs
+          : "text-gray-800 dark:text-gray-400" // color for Tabler icons
+      }`}
+    />
+  );
+
+  const Content = (
+    <motion.div
+      whileHover={{ y: -4 }}
+      className={`relative rounded-lg transition-colors duration-200 ${containerClassName}`}
+    >
+      <IconWrapper />
+    </motion.div>
+  );
+
+  if (href) {
+    return (
+      <Link
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={label}
+        className={`group relative ${hoverColorClass}`}
+      >
+        {Content}
+        {label && <HoverLabel label={label} labelOffset={labelOffset} />}
+      </Link>
+    );
+  }
+
   return (
-    <>
-      {href ? (
-        <Link
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={label}
-          className={`group relative ${hoverColorClass}`}
-        >
-          <motion.div
-            whileHover={{ y: -4 }}
-            className={`relative rounded-lg
-              transition-colors duration-200 ${containerClassName}`}
-          >
-            <Icon
-              size={28}
-              className="transition-colors duration-200
-                text-gray-800 dark:text-gray-400"
-            />
-          </motion.div>
-          {label && <HoverLabel label={label} labelOffset={labelOffset} />}
-        </Link>
-      ) : (
-        <div className={`group relative ${hoverColorClass}`}>
-          <motion.div
-            whileHover={{ y: -4 }}
-            className={`relative rounded-lg 
-              transition-colors duration-200 ${containerClassName}`}
-          >
-            <Icon
-              size={28}
-              className="transition-colors duration-200
-                text-gray-800 dark:text-gray-400"
-            />
-          </motion.div>
-          {label && <HoverLabel label={label} labelOffset={labelOffset} />}
-        </div>
-      )}
-    </>
+    <div className={`group relative ${hoverColorClass}`}>
+      {Content}
+      {label && <HoverLabel label={label} labelOffset={labelOffset} />}
+    </div>
   );
 }
