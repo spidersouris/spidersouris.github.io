@@ -18,8 +18,12 @@ export interface AcademiaItem {
 export interface Presentation extends AcademiaItem {}
 
 export interface Paper extends AcademiaItem {
+  subtype: "preprint" | "conference" | "journal";
+  repo: string;
+  poster: string;
+  video: string;
+  slides: string;
   abstract: string;
-  citations: number;
 }
 
 export interface Teaching {
@@ -28,4 +32,5 @@ export interface Teaching {
   level: string;
   period: string;
   fullResp: boolean;
+  slides: string[];
 }

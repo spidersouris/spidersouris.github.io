@@ -35,6 +35,9 @@ export function Teaching({ teaching }: TeachingProps) {
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                 Period
               </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                Slides
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
@@ -58,6 +61,29 @@ export function Teaching({ teaching }: TeachingProps) {
                     {item.level}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">{item.period}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {item.slides.length > 0 ? (
+                      item.slides.map((slide) => {
+                        const match = slide.match(/\/(\d+\w?)_/);
+                        const id = match ? match[1] : "UNK_ID";
+                        return (
+                          <div key={id}>
+                            <a
+                              href={slide}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-green-600 hover:underline"
+                            >
+                              [class {id}]
+                            </a>
+                            <br />
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <span className="text-gray-500">N/A</span>
+                    )}
+                  </td>
                 </motion.tr>
               );
             })}

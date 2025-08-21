@@ -40,7 +40,7 @@ export function ProjectCard({
         className={`relative h-36 dark:mt-5 dark:bg-inherit ${
           project.image.lightBg ? "bg-gray-900" : ""
         }
-        
+
         ${isFeatured ? "mt-5" : "mt-0"}`}
         // When project is featured,
         // set margin-top to 5 in light mode as well
@@ -63,7 +63,7 @@ export function ProjectCard({
       <div className="p-8 pt-4 space-y-3">
         <div className="flex items-center justify-between">
           <h3 className="text-xl font-bold">
-            {showLabel ? "Project: " : ""}
+            {showLabel ? "Project | " : ""}
             {project.name}
           </h3>
           {/* don't show status on featured card */}

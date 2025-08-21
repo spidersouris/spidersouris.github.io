@@ -1,23 +1,50 @@
+- course: "Machine Translation"
+  institution: "University of Strasbourg"
+  level: "Master's\n(2nd year)"
+  period: "2025"
+  fullResp: true
+  slides:
+    [
+      "teaching/mt/1_intro.pdf",
+      "teaching/mt/2_ibm.pdf",
+      "teaching/mt/2b_alignment.pdf",
+      "teaching/mt/3_nmt.pdf",
+      "teaching/mt/4_eval.pdf",
+      "teaching/mt/5_transformer.pdf",
+      "teaching/mt/6_llm.pdf",
+    ]
+
+- course: "Information Retrieval"
+  institution: "University of Strasbourg"
+  level: "Master's\n(2nd year)"
+  period: "2025"
+  fullResp: true
+  slides: []
+
 - course: "Web, corpora and translation"
   institution: "Institut européen des métiers de la traduction (IEMT)\nUniversity of Strasbourg"
   level: "Master's\n(1st year)"
   period: "2024 - 2025"
   fullResp: true
+  slides: []
 
 - course: "Introduction to HTML/CSS"
   institution: "University of Strasbourg"
   level: "Bachelor's\n(2nd-3rd years)"
   period: "2024 - 2025"
   fullResp: true
+  slides: []
 
 - course: "Corpus linguistics"
   institution: "University of Strasbourg"
   level: "Master's\n(1st year)"
-  period: "2024 - 2025"
+  period: "2024"
   fullResp: false
+  slides: []
 
 - course: "Corpus analysis"
   institution: "University of Strasbourg"
   level: "Master's\n(2nd year)"
-  period: "2024 - 2025"
+  period: "2024"
   fullResp: false
+  slides: []

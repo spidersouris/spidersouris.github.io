@@ -1,3 +1,14 @@
+- title: "Analyzing use of masculine generics by LLMs in French"
+  anchorId: "poster-alps"
+  type: "poster"
+  authors: ["Doyen, E."]
+  eventName: "ALPS 2025"
+  date: "2025-04-02"
+  location: "Aussois, France"
+  material: "/presentations/posters/alps_poster.pdf"
+  website: "http://alps-2025.imag.fr/index.php/schedule/index.html"
+  featured: false
+
 - title: "Éviter les biais de genre dans les outils de TAL"
   english: "Avoiding Gender Bias in NLP Tools"
   anchorId: "talk-bias-nlp"
@@ -6,9 +17,9 @@
   eventName: "Séminaire LiRiC — Session 2 : inclusion et écriture"
   date: "2025-01-16"
   location: "Strasbourg, France"
-  material: ""
+  material: "presentations/slides/liric_slides.pdf"
   website: "https://frlc.hypotheses.org/1334"
-  featured: true
+  featured: false
 
 - title: "Navigation structurée de métadonnées de théâtre"
   english: "Structured Navigation of Theater Metadata"

@@ -42,20 +42,20 @@ export default function AcademiaPage() {
         icon={IconSchool}
         blurb="An overview of my academic activities, including publications, talks, and teaching, showcasing my work at the intersection of natural language processing, digital humanities, and linguistics."
       />
+      <hr className="border-t border-gray-200 dark:border-gray-700" />
       <motion.section
         className="space-y-6"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.7 }}
       >
+        <Papers papers={papers} highlightedId={highlightedId} />
+        <hr className="border-t border-gray-200 dark:border-gray-700" />
         <TalksPresentations
           presentations={presentations}
           highlightedId={highlightedId}
         />
-
-        {/* Finish implementation of Papers component */}
-        {/* <Papers papers={papers} /> */}
-
+        <hr className="border-t border-gray-200 dark:border-gray-700" />
         <Teaching teaching={teaching} />
       </motion.section>
     </div>

@@ -34,7 +34,7 @@ export function TalksPresentations({
         <ChatCircleDots size={24} className="inline relative bottom-0.5 mr-1" />{" "}
         Talks and Presentations
       </h2>
-      <div className="space-y-8">
+      <div className="ml-1 border-l border-gray-600 pl-4">
         {presentations.map((presentation, index) => {
           const PresentationIcon =
             presentationIcons[presentation.type] || IconPresentation;
