@@ -19,14 +19,29 @@
   level: "Master's\n(2nd year)"
   period: "2025"
   fullResp: true
-  slides: []
+  slides:
+    [
+      "teaching/mt/1_intro.pdf",
+      "teaching/mt/2_evaluation.pdf",
+      "teaching/mt/3_methods.pdf",
+      "teaching/mt/4_streamlit.pdf",
+    ]
 
 - course: "Web, corpora and translation"
   institution: "Institut européen des métiers de la traduction (IEMT)\nUniversity of Strasbourg"
   level: "Master's\n(1st year)"
   period: "2024 - 2025"
   fullResp: true
-  slides: []
+  slides:
+    [
+      "teaching/wct/1_intro.pdf",
+      "teaching/wct/2_se_intro.pdf",
+      "teaching/wct/2b_se_cql.pdf",
+      "teaching/wct/3_ac_intro.pdf",
+      "teaching/wct/3b_ac_rx.pdf",
+      "teaching/wct/4_bc.pdf",
+      "teaching/wct/5_llm.pdf",
+    ]
 
 - course: "Introduction to HTML/CSS"
   institution: "University of Strasbourg"
