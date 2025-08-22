@@ -21,10 +21,10 @@
   fullResp: true
   slides:
     [
-      "teaching/mt/1_intro.pdf",
-      "teaching/mt/2_evaluation.pdf",
-      "teaching/mt/3_methods.pdf",
-      "teaching/mt/4_streamlit.pdf",
+      "teaching/ir/1_intro.pdf",
+      "teaching/ir/2_evaluation.pdf",
+      "teaching/ir/3_methods.pdf",
+      "teaching/ir/4_streamlit.pdf",
     ]
 
 - course: "Web, corpora and translation"
