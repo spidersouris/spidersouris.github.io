@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import type { Writing } from "@/types/post";
 
-import { Clock, CalendarDot, Tag } from "@phosphor-icons/react";
+import { ClockIcon, CalendarDotIcon, TagIcon } from "@phosphor-icons/react";
 
 export function PostCard({ writing }: { writing: Writing }) {
   return (
@@ -28,20 +28,20 @@ export function PostCard({ writing }: { writing: Writing }) {
         )}
         <div className="flex gap-4 text-sm text-gray-500 dark:text-gray-400 mb-4">
           <span>
-            <CalendarDot style={{ display: "inline" }} />
+            <CalendarDotIcon style={{ display: "inline" }} />
             &nbsp;
             <time dateTime={writing.frontmatter.date.toISOString()}>
               {writing.frontmatter.date.toISOString().split("T", 1)[0]}
             </time>
           </span>
           <span>
-            <Clock style={{ display: "inline" }} />
+            <ClockIcon style={{ display: "inline" }} />
             &nbsp;{writing.readingTime}-minute reading
           </span>
         </div>
         {writing.frontmatter.tags?.length > 0 && (
           <div className="flex flex-wrap gap-2">
-            <Tag size={20} className="inline relative top-1" />
+            <TagIcon size={20} className="inline relative top-1" />
             {writing.frontmatter.tags.map((tag) => (
               <div key={tag} className="flex items-center gap-1">
                 <span

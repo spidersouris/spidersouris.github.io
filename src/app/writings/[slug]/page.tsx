@@ -1,7 +1,11 @@
 import { getPostBySlug } from "@/content/posts";
 import { notFound } from "next/navigation";
 
-import { Clock, CalendarDot, Tag } from "@phosphor-icons/react/dist/ssr";
+import {
+  ClockIcon,
+  CalendarDotIcon,
+  TagIcon,
+} from "@phosphor-icons/react/dist/ssr";
 
 import { Writing } from "@/types/post";
 import { getAllPosts } from "@/content/posts";
@@ -45,18 +49,18 @@ export default async function PostPage(props: { params: Params }) {
           <h1 className="mb-2">{post.frontmatter.title}</h1>
           <div className="flex flex-col gap-4 text-sm text-gray-500 md:flex-row">
             <span>
-              {<CalendarDot style={{ display: "inline" }} />}
+              {<CalendarDotIcon style={{ display: "inline" }} />}
               &nbsp;
               <time dateTime={post.frontmatter.date.toISOString()}>
                 {post.frontmatter.date.toISOString().split("T", 1)[0]}
               </time>
             </span>
             <span>
-              {<Clock style={{ display: "inline" }} />} {post.readingTime}
+              {<ClockIcon style={{ display: "inline" }} />} {post.readingTime}
               -minute reading
             </span>
             <span>
-              {<Tag style={{ display: "inline" }} />}{" "}
+              {<TagIcon style={{ display: "inline" }} />}{" "}
               {post.frontmatter.tags.map((tag) => (
                 <span
                   key={tag}
