@@ -22,9 +22,11 @@
   slides:
     [
       "teaching/ir/1_intro.pdf",
-      "teaching/ir/2_evaluation.pdf",
-      "teaching/ir/3_methods.pdf",
-      "teaching/ir/4_streamlit.pdf",
+      "teaching/ir/2_preprocessing.pdf",
+      "teaching/ir/3_sparse_models.pdf",
+      "teaching/ir/4_dense_models.pdf",
+      "teaching/ir/5_evaluation.pdf",
+      "teaching/ir/6_streamlit.pdf",
     ]
 
 - course: "Web, corpora and translation"
