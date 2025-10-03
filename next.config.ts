@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
   output: "export",
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   env: {
-    NEXT_PUBLIC_BASE_URL: process.env.GITHUB_ACTIONS
+    NEXT_PUBLIC_BASE_URL: process.env.VERCEL //process.env.GITHUB_ACTIONS
       ? "https://wk.spidersouris.workers.dev/https://edoyen.com"
       : "http://localhost:3888",
   },
