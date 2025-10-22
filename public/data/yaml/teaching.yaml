@@ -29,7 +29,7 @@
       "teaching/ir/6_streamlit.pdf",
     ]
 
-- course: "Web, corpora and translation"
+- course: "Web, Corpora & Translation"
   institution: "Institut européen des métiers de la traduction (IEMT)\nUniversity of Strasbourg"
   level: "Master's\n(1st year)"
   period: "2024 - 2025"
@@ -42,7 +42,8 @@
       "teaching/wct/3_ac_intro.pdf",
       "teaching/wct/3b_ac_rx.pdf",
       "teaching/wct/4_bc.pdf",
-      "teaching/wct/5_llm.pdf",
+      "teaching/wct/5_vis.pdf",
+      "teaching/wct/6_llm.pdf",
     ]
 
 - course: "Introduction to HTML/CSS"
@@ -52,14 +53,21 @@
   fullResp: true
   slides: []
 
-- course: "Corpus linguistics"
+- course: "Data Science Supervised Project"
+  institution: "University of Strasbourg (UFR Math-Info)"
+  level: "Master's\n(2nd year)"
+  period: "2025"
+  fullResp: false
+  slides: []
+
+- course: "Corpus Linguistics"
   institution: "University of Strasbourg"
   level: "Master's\n(1st year)"
   period: "2024"
   fullResp: false
   slides: []
 
-- course: "Corpus analysis"
+- course: "Corpus Analysis"
   institution: "University of Strasbourg"
   level: "Master's\n(2nd year)"
   period: "2024"
