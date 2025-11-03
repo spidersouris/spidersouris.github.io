@@ -1,0 +1,32 @@
+---
+title: "Are LLMs killing human-created learning content?"
+date: 2025-11-03T20:45:43+01:00
+draft: false
+tags: ["thoughts"]
+---
+
+
+Much has already been said on AI-generated content over the last couple of years, but it seems that one thing in particular has mostly slipped under the radar: the over-reliance on LLMs for learning and researching, leading to a decrease (and even, a suppression) in quality human-generated wikis, guides and tutorials.
+
+What I have read online since LLMs took a turn in 2022 seems to confirm this idea. To quote [a recent blogpost from Rocky Jaiswal](https://rockyj-blogs.web.app/2025/10/25/result-monad.html):
+
+> With everything in software development going the AI way and the small ideas I had, when I tried to put them in Claude I usually got the post I wanted to make in a few seconds. So it was kind of demotivating to spend hours on doing some research when people can get the same answer from AI anytime in seconds.
+
+It is a given that LLMs are an incredible and performing tool to learn about a whole range of stuff (especially in computer science). As soon as modern LLMs such as GPT-3 started emerging, it became clear to me that their use for learning could be more than valuable. When I was still a student, I remember using some kind of GPT-3 wrapper (which I unfortunately forgot the name of) leveraging prompt engineering (even though that term didn't really exist at the time) to help people learn in a socratic way -- not only did it help me better grasp some parts of the content, but it also incited me to go deeper into the topic and search for additional resources online. Since, this has obviously been picked up by AI companies themselves, with specific funding for AI use in educational environments, and the introduction of related features directly into the systems, such as [ChatGPT's study mode](https://openai.com/index/chatgpt-study-mode/).
+
+In spite of that, and this has been said many times: LLMs are *not* self-sufficient for learning and doing (in computer science), insofar as you should always rely on external resources to confirm or question the output. What should be further emphasized, in my opinion, is that real experience output will, generally, always be more valuable than some LLM output, precisely because one brings one's own thinking and experience in the process of writing and explaining to others. To that end, I believe that restraining oneself from publishing a blogpost or a tutorial just because an LLM could, theoretically, produce a better version of it, harms the community. What happens if, in the end, everyone resorts to LLMs to fix issues or learn about a specific process, and there is no more human-curated content to rely on and compare it with?
+
+That decrease in human-generated content is real: StackOverflow, which previously was the reference site for everything related to software engineering, has recently [seen its number of asked questions plummet to the 2008 threshold, a downfall mostly correlated with the release of ChatGPT](https://www.reddit.com/r/singularity/comments/1knapc3/stackoverflow_activity_down_to_2008_numbers/):
+
+![Reddit post on r/singularity by Ensirius; "StackOverflow activity down to 2008 numbers"](https://i.redd.it/bf1anhh6py0f1.png)
+
+Similarly, Google searches often point to Medium articles generated with the same generic, bullet-pointy structure, sometimes even with wrong information. While I wouldn't go so far as to say that reading AI-generated content is "[insulting](https://news.ycombinator.com/item?id=45722069)," it will perhaps soon be a truth universally acknowleged that it utterly depersonifies one's writing and reveals, in my opinion, a lack of consideration for one's readers. If people are using their time and energy to read your content, why shouldn't you use that same time and energy to write yourself?
+
+To expand on the issue of using human-generated or LLM-generated content for learning, I'd like to base myself on my own experience: I recently wanted to load a local, quantized version of `gpt-oss-20b` with llama.cpp on my university HPC, but I was faced with numerous issues along the way for llama.cpp installation and model loading. Searching online did not lead to many relevant results (only AI slop blogposts); LLMs were not able to help me at all in fixing this, giving contradictory answers everytime (and none of them working), leading to much time being lost in the process. I cannot say for sure if the presence of human-created tutorials or documentation online would have changed much, but I could at least have relied on something that would have been (normally) priorly tested and thus working (at least in their environment), and a person I could have possibly reached out to in order to get more information and help. (The final word of the story is that I switched to ollama in the meantime, but I'd still like to get llama.cpp working when I have enough time!)
+
+What should be done, then? I think it's high time to give better visibility to and celebrate people using their time and energy to create great, human-curated learning resources. Most recently, for instance, the [Smol Training Playbook](https://huggingface.co/spaces/HuggingFaceTB/smol-training-playbook) has been published by members from Hugging Face. It is, to me, the perfect example of great learning content being shared with the community. Here are a few more similar pieces of content I'd like to give tribute to:
+- [3Blue1Brown](https://www.3blue1brown.com/),
+- [Neural Networks from Scratch](https://nnfs.io/),
+- [calmcode.io](https://calmcode.io).
+
+I also strongly believe it is a shared responsibility to convince people that the mere existence of LLMs does not imply that they should stop writing and publishing online. Every content, every experience has its usefulness, even when it's catered to niches. If people are not interested in your content, others will be -- and the former will just switch to another website and move on.
