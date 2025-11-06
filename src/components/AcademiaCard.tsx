@@ -82,7 +82,7 @@ export function AcademiaCard({ academiaItem }: { academiaItem: AcademiaItem }) {
             {academiaItem.location}
           </p>
         </div>
-        <div className="flex gap-4 text-md">
+        <div className="flex gap-4 text-md flex-wrap">
           {academiaItem.website && (
             <Link
               href={academiaItem.website}
