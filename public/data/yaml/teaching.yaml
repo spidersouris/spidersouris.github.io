@@ -49,9 +49,16 @@
 - course: "Introduction to HTML/CSS"
   institution: "University of Strasbourg"
   level: "Bachelor's\n(2nd-3rd years)"
-  period: "2024 - 2025"
+  period: "2024 - 2026"
   fullResp: true
-  slides: []
+  slides:
+    [
+      "teaching/html/1_intro.pdf",
+      "teaching/html/2_css.pdf",
+      "teaching/html/3_layout.pdf",
+      "teaching/html/4_tables.pdf",
+      "teaching/html/5_flex.pdf",
+    ]
 
 - course: "Data Science Supervised Project"
   institution: "University of Strasbourg (UFR Math-Info)"
