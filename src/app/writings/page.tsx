@@ -1,19 +1,11 @@
-"use client";
-
 import { PostCard } from "@/components/PostCard";
 import { PageIntro } from "@/components/PageIntro";
 import { IconPencil } from "@tabler/icons-react";
-import { useEffect } from "react";
-import { usePostsStore } from "@/store/PostsStore";
 import type { Writing } from "@/types/post";
-import SkeletonPostCard from "@/components/skeletons/SkeletonPostCard";
+import { getAllPosts } from "@/content/posts";
 
-export default function WritingsPage() {
-  const { posts, fetchPosts, isLoading } = usePostsStore();
-
-  useEffect(() => {
-    fetchPosts();
-  }, [fetchPosts]);
+export default async function WritingsPage() {
+  const posts = await getAllPosts();
 
   return (
     <div className="space-y-8">
@@ -24,7 +16,6 @@ export default function WritingsPage() {
       />
 
       <div className="grid gap-6">
-        {isLoading && <SkeletonPostCard />}
         {posts.map((post) => (
           <PostCard key={post.slug} writing={post as Writing} />
         ))}

@@ -1,39 +1,18 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import { useAcademiaStore } from "@/store/AcademiaStore";
 import { IconSchool } from "@tabler/icons-react";
 import { PageIntro } from "@/components/PageIntro";
-import { TalksPresentations } from "@/components/academia/TalksPresentations";
-import { Teaching } from "@/components/academia/Teaching";
-import { Papers } from "@/components/academia/Papers";
-import { motion } from "framer-motion";
+import AcademiaSectionsClient from "@/components/academia/AcademiaSectionsClient";
+import {
+  getPresentations,
+  getPapers,
+  getTeaching,
+} from "@/content/academia";
 
-export default function AcademiaPage() {
-  const { presentations, papers, teaching, fetchAcademia } = useAcademiaStore();
-  const [highlightedId, setHighlightedId] = useState("");
-
-  useEffect(() => {
-    fetchAcademia();
-  }, [fetchAcademia]);
-
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.slice(1); // Remove the # symbol
-      if (hash) {
-        setHighlightedId(decodeURIComponent(hash));
-        const element = document.getElementById(hash);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }
-    };
-
-    handleHashChange();
-
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
-  }, []);
+export default async function AcademiaPage() {
+  const [presentations, papers, teaching] = await Promise.all([
+    getPresentations(),
+    getPapers(),
+    getTeaching(),
+  ]);
 
   return (
     <div className="space-y-8">
@@ -43,21 +22,11 @@ export default function AcademiaPage() {
         blurb="An overview of my academic activities, including publications, talks, and teaching, showcasing my work at the intersection of natural language processing, digital humanities, and linguistics."
       />
       <hr className="border-t border-gray-200 dark:border-gray-700" />
-      <motion.section
-        className="space-y-6"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.7 }}
-      >
-        <Papers papers={papers} highlightedId={highlightedId} />
-        <hr className="border-t border-gray-200 dark:border-gray-700" />
-        <TalksPresentations
-          presentations={presentations}
-          highlightedId={highlightedId}
-        />
-        <hr className="border-t border-gray-200 dark:border-gray-700" />
-        <Teaching teaching={teaching} />
-      </motion.section>
+      <AcademiaSectionsClient
+        presentations={presentations}
+        papers={papers}
+        teaching={teaching}
+      />
     </div>
   );
 }

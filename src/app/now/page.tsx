@@ -1,20 +1,14 @@
-"use client";
 import { PageIntro } from "@/components/PageIntro";
-import NowContent from "/public/data/now/now.mdx";
-import { useEffect, useState } from "react";
 import { IconClock } from "@tabler/icons-react";
-import { motion } from "framer-motion";
-import { useNowStore } from "@/store/NowStore";
+import MotionFadeIn from "@/components/MotionFadeIn";
 import Link from "next/link";
+import { getCurrentNow, getPastNowPosts } from "@/content/now";
 
-export default function NowPage() {
-  const { pastNows, currentNow, fetchPastNows, fetchCurrentNow } =
-    useNowStore();
-
-  useEffect(() => {
-    fetchPastNows();
-    fetchCurrentNow();
-  }, []);
+export default async function NowPage() {
+  const [currentNow, pastNows] = await Promise.all([
+    getCurrentNow(),
+    getPastNowPosts(),
+  ]);
 
   return (
     <div className="space-y-4 prose dark:prose-invert max-w-none">
@@ -24,11 +18,10 @@ export default function NowPage() {
         blurb="What currently occupies my mind."
       />
 
-      <motion.div
+      <MotionFadeIn
         className="space-y-8 text-gray-800 dark:text-gray-300"
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.7 }}
+        direction="left"
+        duration={0.7}
       >
         {currentNow?.frontmatter && (
           <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -38,14 +31,14 @@ export default function NowPage() {
             </time>
           </p>
         )}
-        <NowContent />
-      </motion.div>
+        {currentNow?.content}
+      </MotionFadeIn>
+
       {pastNows.length > 0 && (
-        <motion.div
+        <MotionFadeIn
           className="mt-8 space-y-8 text-gray-800 dark:text-gray-300"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
+          direction="left"
+          duration={0.7}
         >
           <h2>Past Nows</h2>
           {pastNows.map((post) => (
@@ -57,7 +50,7 @@ export default function NowPage() {
               <time>{post.frontmatter.date.toLocaleDateString()}</time>
             </Link>
           ))}
-        </motion.div>
+        </MotionFadeIn>
       )}
     </div>
   );

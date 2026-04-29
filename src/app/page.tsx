@@ -1,16 +1,14 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { IconFileText } from "@tabler/icons-react";
 import { CustomIcon } from "@/components/CustomIcon";
 import { MainPageIntro } from "@/components/MainPageIntro";
 import { MainPageProfilePic } from "@/components/MainPageProfilePic";
 import { FeaturedItems } from "@/components/FeaturedItems";
+import MotionFadeIn from "@/components/MotionFadeIn";
 import { socialLinks } from "@/constants/socialLinks";
 
 import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
   // Add Person JSON-LD for SEO and rich snippets
   // https://schema.org/Person
   // Relevant NextJS doc: https://nextjs.org/docs/app/guides/json-ld
@@ -83,11 +81,7 @@ export default function Home() {
         <MainPageProfilePic />
       </section>
 
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="flex justify-center"
-      >
+      <MotionFadeIn className="flex justify-center" direction="up">
         <Link
           href="/edoyen_resume.pdf"
           target="_blank"
@@ -106,17 +100,16 @@ export default function Home() {
           View Resume
           <span className="absolute inset-0 rounded-lg" />
         </Link>
-      </motion.div>
+      </MotionFadeIn>
 
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
+      <MotionFadeIn
         className="flex justify-center gap-6 mb-6"
+        direction="up"
       >
         {socialLinks.map((link) => (
           <CustomIcon key={link.href} {...link} />
         ))}
-      </motion.div>
+      </MotionFadeIn>
 
       <FeaturedItems />
     </div>
