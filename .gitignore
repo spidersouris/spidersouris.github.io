@@ -38,7 +38,7 @@ yarn-error.log*
 next-env.d.ts
 
 # writing drafts
-src/content/posts/_*
+public/data/posts/content/_*
 .vercel
 
 # other mds
