@@ -1,9 +1,9 @@
 import { parseMarkdown } from "@/utils/parseMarkdown";
 import type { Project } from "@/types/project";
-import { fetchYamlData } from "@/utils/fetchData";
+import { loadYaml } from "@/utils/loadData";
 
 export async function getProjects(): Promise<Project[]> {
-  const projects: Project[] = await fetchYamlData("projects.yaml");
+  const projects = await loadYaml<Project[]>("projects.yaml");
 
   return Promise.all(
     projects.map(async (project) => ({

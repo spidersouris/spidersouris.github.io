@@ -15,47 +15,14 @@ import readingTime from "reading-time";
 
 import ImageWithModal from "@/components/ImageWithModal";
 
-import { fetchMdxFile } from "@/utils/fetchData";
+import { loadDataFile, loadJson } from "@/utils/loadData";
 
 import { Pluggable } from "unified";
 
 import remarkHasFootnotes from "@/lib/remarkHasFootnotes";
 
-let hasFootnotes = false;
-
-const mdxOptions = {
-  components: {
-    img: ImageWithModal,
-    YoutubeVideo,
-    Footnote,
-  },
-  options: {
-    parseFrontmatter: true,
-    mdxOptions: {
-      remarkPlugins: [
-        remarkGfm,
-        remarkParse,
-        // todo: find a less verbose way to define this
-        () => (tree) => {
-          hasFootnotes = remarkHasFootnotes()(tree);
-        },
-      ] as Pluggable[],
-      rehypePlugins: [
-        rehypeSlug,
-        [rehypeExternalLinks, { rel: ["nofollow"], target: "_blank" }],
-        [
-          rehypeAutolinkHeadings,
-          { behavior: "wrap", properties: { className: ["writings-anchor"] } },
-        ],
-        rehypeFigure,
-        [rehypePrettyCode, { theme: "tokyo-night" }],
-      ] as Pluggable[],
-    },
-  },
-} as const;
-
 async function getPostFile(fileName: string): Promise<PostFile | null> {
-  const mdxContent = await fetchMdxFile("posts/content/" + fileName);
+  const mdxContent = await loadDataFile("posts/content/" + fileName);
   if (!mdxContent) return null;
 
   const { data, content } = matter(mdxContent);
@@ -77,25 +44,11 @@ function processFrontmatter(data: matter.GrayMatterFile<string>["data"]) {
 
 export async function getAllPosts(): Promise<Writing[]> {
   try {
-    const fetchOptions = {
-      headers: {
-        "Content-Type": "application/json",
-        Origin: "https://edoyen.com/",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers":
-          "Origin, X-Requested-With, Content-Type, Accept",
-      },
-    };
-    const filesResponse = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/data/posts/posts.json`,
-      fetchOptions
-    );
-    if (!filesResponse.ok) {
-      console.error("Failed to fetch list of post files");
+    const files = await loadJson<string[]>("posts/posts.json");
+    if (!files) {
+      console.error("Failed to load list of post files");
       return [];
     }
-
-    const files: string[] = await filesResponse.json();
 
     const posts = await Promise.all(
       files
@@ -112,7 +65,7 @@ export async function getAllPosts(): Promise<Writing[]> {
             frontmatter: processFrontmatter(data),
             readingTime: readTime,
           } as Writing;
-        })
+        }),
     );
 
     const filteredPosts = posts.filter((post) => {
@@ -122,7 +75,7 @@ export async function getAllPosts(): Promise<Writing[]> {
     });
 
     return filteredPosts.sort(
-      (a, b) => b!.frontmatter.date.getTime() - a!.frontmatter.date.getTime()
+      (a, b) => b!.frontmatter.date.getTime() - a!.frontmatter.date.getTime(),
     ) as Writing[];
   } catch (error) {
     console.error("Failed to get all posts", error);
@@ -138,9 +91,40 @@ export async function getPostBySlug(slug: string): Promise<Writing | null> {
     const { content, data } = postFile;
     const readTime = calculateReadingTime(content);
 
+    let hasFootnotes = false;
+
     const { content: compiledContent } = await compileMDX({
       source: content,
-      ...mdxOptions,
+      components: {
+        img: ImageWithModal,
+        YoutubeVideo,
+        Footnote,
+      },
+      options: {
+        parseFrontmatter: true,
+        mdxOptions: {
+          remarkPlugins: [
+            remarkGfm,
+            remarkParse,
+            () => (tree) => {
+              hasFootnotes = remarkHasFootnotes()(tree);
+            },
+          ] as Pluggable[],
+          rehypePlugins: [
+            rehypeSlug,
+            [rehypeExternalLinks, { rel: ["nofollow"], target: "_blank" }],
+            [
+              rehypeAutolinkHeadings,
+              {
+                behavior: "wrap",
+                properties: { className: ["writings-anchor"] },
+              },
+            ],
+            rehypeFigure,
+            [rehypePrettyCode, { theme: "tokyo-night" }],
+          ] as Pluggable[],
+        },
+      },
     });
 
     return {

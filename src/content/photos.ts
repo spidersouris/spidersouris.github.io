@@ -1,6 +1,6 @@
 import type { Photo } from "react-photo-album";
-import { fetchYamlData } from "@/utils/fetchData";
+import { loadYaml } from "@/utils/loadData";
 
 export async function getPhotos(): Promise<Photo[]> {
-  return fetchYamlData("photos.yaml");
+  return loadYaml<Photo[]>("photos.yaml");
 }

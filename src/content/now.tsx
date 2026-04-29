@@ -1,11 +1,11 @@
 import matter from "gray-matter";
 import { compileMDX } from "next-mdx-remote/rsc";
 import type { NowPost } from "@/types/post";
-import { fetchMdxFile } from "@/utils/fetchData";
+import { loadDataFile, loadJson } from "@/utils/loadData";
 
 export async function getCurrentNow(): Promise<NowPost | null> {
   try {
-    const mdxContent = await fetchMdxFile("now/now.mdx");
+    const mdxContent = await loadDataFile("now/now.mdx");
     if (!mdxContent) return null;
 
     const { data, content } = matter(mdxContent);
@@ -29,31 +29,17 @@ export async function getCurrentNow(): Promise<NowPost | null> {
 
 export async function getPastNowPosts(): Promise<NowPost[]> {
   try {
-    const fetchOptions = {
-      headers: {
-        "Content-Type": "application/json",
-        Origin: "https://edoyen.com/",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers":
-          "Origin, X-Requested-With, Content-Type, Accept",
-      },
-    };
-    const pastFilesResponse = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/data/now/pastNows/pastNows.json`,
-      fetchOptions
-    );
-    if (!pastFilesResponse.ok) {
-      console.error("Failed to fetch list of past nows");
+    const files = await loadJson<string[]>("now/pastNows/pastNows.json");
+    if (!files) {
+      console.error("Failed to load list of past nows");
       return [];
     }
-
-    const files: string[] = await pastFilesResponse.json();
 
     const posts = await Promise.all(
       files
         .filter((file) => file.endsWith(".mdx"))
         .map(async (file) => {
-          const mdxContent = await fetchMdxFile(`now/pastNows/${file}`);
+          const mdxContent = await loadDataFile(`now/pastNows/${file}`);
           if (!mdxContent) return null;
 
           const { data, content } = matter(mdxContent);
@@ -63,7 +49,7 @@ export async function getPastNowPosts(): Promise<NowPost[]> {
           });
 
           return {
-            slug: data.date.toISOString().split("T", 1)[0],
+            slug: new Date(data.date).toISOString().split("T", 1)[0],
             frontmatter: {
               ...data,
               date: new Date(data.date),
