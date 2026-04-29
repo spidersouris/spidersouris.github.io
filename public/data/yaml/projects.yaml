@@ -18,7 +18,7 @@
     github: https://github.com/spidersouris/termic
     demo: https://termic.me/
   githubStats:
-    stars: 21
+    stars: 23
   featured: false
 - name: touying-unistra-pristine
   description: >-
@@ -39,7 +39,7 @@
   links:
     github: https://github.com/spidersouris/touying-unistra-pristine
   githubStats:
-    stars: 14
+    stars: 19
   featured: true
 - name: tgpin
   description: >-
