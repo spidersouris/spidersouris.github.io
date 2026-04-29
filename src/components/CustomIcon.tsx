@@ -1,8 +1,8 @@
 import { Icon } from "@tabler/icons-react";
 import { ComponentType, SVGProps } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { HoverLabel } from "./HoverLabel";
+import IconHoverLift from "./IconHoverLift";
 
 interface CustomIconProps {
   icon: Icon | ComponentType<SVGProps<SVGSVGElement>>;
@@ -23,7 +23,7 @@ export function CustomIcon({
   containerClassName = "",
   size = 28,
 }: CustomIconProps) {
-  const IconWrapper = () => (
+  const renderedIcon = (
     <IconComponent
       width={size}
       height={size}
@@ -36,12 +36,7 @@ export function CustomIcon({
   );
 
   const Content = (
-    <motion.div
-      whileHover={{ y: -4 }}
-      className={`relative rounded-lg transition-colors duration-200 ${containerClassName}`}
-    >
-      <IconWrapper />
-    </motion.div>
+    <IconHoverLift className={containerClassName}>{renderedIcon}</IconHoverLift>
   );
 
   if (href) {
