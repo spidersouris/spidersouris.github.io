@@ -10,7 +10,7 @@
   doi: "https://doi.org/10.18653/v1/2025.findings-acl.411"
   material: "https://aclanthology.org/2025.findings-acl.411.pdf"
   repo: "https://github.com/spidersouris/GeNRe"
-  featured: true
+  featured: false
   poster: "presentations/posters/genre_poster.pdf"
   video: "https://underline.io/events/485/posters/20542/poster/121838-genre-a-french-gender-neutral-rewriting-system-using-collective-nouns"
   slides: "presentations/slides/genre_slides.pdf"

@@ -1,7 +1,30 @@
+- title: "Constrained Decoding for Gender-Fair French Language Generation in LLMs"
+  anchorId: "poster-mlss"
+  type: "poster"
+  authors: ["Doyen, E.", "Todirascu, A."]
+  eventName: "Machine Learning Summer School 2026"
+  date: "2026-06-24"
+  location: "New York City, NY, USA"
+  material: "/presentations/posters/mlss_poster.pdf"
+  website: "https://cfe.columbia.edu/content/mlss2"
+  featured: true
+
+- title: "Analyse préliminaire de l'adverbe _perso_ dans les discours de réseaux sociaux"
+  english: "Preliminary Analysis of the French Adverb _perso_ in Social Media Discourse"
+  anchorId: "poster-lilpa"
+  type: "poster"
+  authors: ["Miyakoshi, S.", "Doyen, E."]
+  eventName: "LiLPa Seminar"
+  date: "2026-05-03"
+  location: "Strasbourg, France"
+  material: "/presentations/posters/lilpa_poster.pdf"
+  website: null
+  featured: false
+
 - title: "Analyzing use of masculine generics by LLMs in French"
   anchorId: "poster-alps"
   type: "poster"
-  authors: ["Doyen, E."]
+  authors: ["Doyen, E.", "Todirascu, A."]
   eventName: "ALPS 2025"
   date: "2025-04-02"
   location: "Aussois, France"

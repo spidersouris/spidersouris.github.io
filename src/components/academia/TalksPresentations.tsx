@@ -18,6 +18,7 @@ import Link from "next/link";
 import { Presentation } from "@/types/academia";
 import { highlightMe } from "@/components/HighlightMe";
 import { presentationIcons } from "@/constants/presentationsIcons";
+import ReactMarkdown from "react-markdown";
 
 interface TalksPresentationsProps {
   presentations: Presentation[];
@@ -71,10 +72,26 @@ export function TalksPresentations({
               <div className="flex items-start gap-4">
                 <PresentationIcon size={24} className="flex-shrink-0 mt-1" />
                 <div className="space-y-2">
-                  <h3 className="font-bold text-lg">{presentation.title}</h3>
+                  <h3 className="font-bold text-lg">
+                    <ReactMarkdown
+                      components={{
+                        p: ({ children }) => <>{children}</>,
+                      }}
+                    >
+                      {presentation.title}
+                    </ReactMarkdown>
+                  </h3>
                   {presentation.english && (
                     <span className="text-gray-800 dark:text-gray-400">
-                      ({presentation.english})
+                      {"("}
+                      <ReactMarkdown
+                        components={{
+                          p: ({ children }) => <>{children}</>,
+                        }}
+                      >
+                        {presentation.english}
+                      </ReactMarkdown>
+                      {")"}
                     </span>
                   )}
                   <div className="text-gray-800 dark:text-gray-400">
@@ -117,15 +134,17 @@ export function TalksPresentations({
                     )}
                   </div>
                   <div className="flex gap-4 text-sm">
-                    <Link
-                      href={presentation.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:underline inline-flex items-center gap-1"
-                    >
-                      <IconExternalLink size={18} />
-                      Announcement
-                    </Link>
+                    {presentation.website && (
+                      <Link
+                        href={presentation.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline inline-flex items-center gap-1"
+                      >
+                        <IconExternalLink size={18} />
+                        Announcement
+                      </Link>
+                    )}
                     <Link
                       href={presentation.material}
                       style={{
